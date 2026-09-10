@@ -1,0 +1,15 @@
+tipo,nombre,lat,lon,zona,precision,fuente
+farmacia,Drogas La Aspirina,7.9642,-74.0519,urbana,aproximada,Farmacolombia + dirección
+farmacia,Beymax,7.9650,-74.0544,urbana,aproximada,Farmacolombia + dirección
+farmacia,Droguería La Serranía,7.9660,-74.0488,urbana,aproximada,Farmacolombia + dirección
+farmacia,D Central,7.9652,-74.0510,urbana,aproximada,Google Business + dirección
+farmacia,Droguería San Martín de la 12,7.9668,-74.0475,urbana,aproximada,Google Business + dirección
+farmacia,Droguería-Minimarket Al Frente,7.9680,-74.0474,urbana,aproximada,Google Business + dirección
+salud,Hospital Manuel Elkin Patarroyo,7.96824,-74.04702,urbana,exacta,Mapcarta/OpenStreetMap
+salud,Centro Médico Cruz Blanca,7.9660,-74.0488,urbana,aproximada,Google Business + dirección
+salud,Centro Médico Soluciones SAS,7.9650,-74.0540,urbana,aproximada,Google Business + dirección
+salud,Consultorio Odontológico David José García,7.9654,-74.0500,urbana,aproximada,Google Business + dirección
+salud,Laboratorio Clínico Pirateque LACLIP,7.9650,-74.0534,urbana,aproximada,Google Business + dirección
+colegio,I.E.T. en Informática María Montessori,7.9645,-74.0550,urbana,aproximada,Sitio institucional + dirección
+colegio,I.E.T. Comercial María Inmaculada,7.9656,-74.0524,urbana,aproximada,SINEB + sitio institucional
+colegio,I.E.T. Agropecuaria Alfredo Nobel,7.9653,-74.0471,urbana,aproximada,Mapcarta: cercana al hospital
