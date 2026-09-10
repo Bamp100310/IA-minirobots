@@ -3,8 +3,10 @@
 **Semestre:** 2026-2S  
 
 ## 👥 Equipo de Trabajo
+
 * **Edinson Sanchez Fuentes** (`edsanchezf@unal.edu.co`)
 * **Brayan Alejandro Muñoz Pérez** (`bmunozp@unal.edu.co`)
+* **Joan Sebastián Roberto Puerto** (`jroberto@unal.edu.co`)
 
 ---
 
