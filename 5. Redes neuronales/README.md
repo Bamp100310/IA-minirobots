@@ -3,9 +3,7 @@
 Desarrollo de los cuatro ejercicios propuestos en la sección 5.9 del capítulo
 *Introducción a las Redes Neuronales Artificiales* (José J. Martínez P.), curso de Inteligencia Artificial y Minirobots.
 
-Los programas se entregan como notebooks de Jupyter, ejecutados y con sus resultados incluidos. El documento
-`Documento_Redes_Neuronales.pdf` (y su versión editable `.docx`) describe las partes y los resultados de cada
-programa, el uso de herramientas de IA generativa, y contiene los enlaces para abrir cada notebook en Google Colab.
+Los programas se entregan como notebooks de Jupyter, ejecutados y con sus resultados incluidos. El documento [`Documento_Redes_Neuronales.pdf`](Documento_Redes_Neuronales.pdf) describe las partes y los resultados de cada programa, el uso de herramientas de IA generativa, y contiene los enlaces para abrir cada notebook en Google Colab.
 
 ## Ejercicios desarrollados
 
