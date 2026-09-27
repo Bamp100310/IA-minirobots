@@ -4,23 +4,24 @@ Desarrollo de los ejercicios y problemas propuestos en la sección 2.10 del cap�
 (José J. Martínez P.), curso de Inteligencia Artificial y Minirobots.
 
 El documento [`Documento_Automatas_celulares.pdf`](Documento_Automatas_celulares.pdf) contiene las
-respuestas escritas y remite a los programas, que están en la carpeta [`ejercicios`](ejercicios/).
+respuestas escritas. Las implementaciones y los análisis reproducibles están en la carpeta
+[`notebooks`](notebooks/).
 
 ## Ejercicios desarrollados
 
 | Ejercicio | Enunciado | Solución |
 |---|---|---|
 | 1 | Observe sus comportamientos en la casa, en la universidad y en el medio de transporte que utiliza. Encuentre las reglas básicas de cada escenario. | En el documento. Describe cada escenario como un sistema con reglas explícitas e implícitas y lista sus reglas básicas: 6 para la casa, 6 para la universidad y 7 para el transporte público (TransMilenio). |
-| 2 | Desarrolle un modelo de difusión de una enfermedad, un incendio forestal o una moda usando ACs probabilísticos, o simule un robot con dos ruedas que evite obstáculos. | [`ejercicios/modelo-epidemia-ac`](ejercicios/modelo-epidemia-ac/): difusión de una enfermedad con un autómata celular probabilístico de tipo SIR. |
-| 3 | Simule un robot con tres sensores de distancia que recorre un espacio bidimensional con 4 objetos distribuidos aleatoriamente, sin chocar con ellos. | [`ejercicios/simulacion-robot-sensores`](ejercicios/simulacion-robot-sensores/): robot autónomo con sensores frontal, izquierdo y derecho. |
-| 4 | Tome el plano de una ciudad pequeña, localice droguerías, centros de salud y colegios, y dibuje un diagrama de Voronoi por cada concepto. ¿Puede faltar alguno? ¿Hay relación entre los diagramas? | [`ejercicios/analisis-mediante-diagramas-de-voronoi`](ejercicios/analisis-mediante-diagramas-de-voronoi/) para el código y los diagramas; las respuestas a las preguntas, en el documento. |
+| 2 | Desarrolle un modelo de difusión de una enfermedad, un incendio forestal o una moda usando ACs probabilísticos, o simule un robot con dos ruedas que evite obstáculos. | [`notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb`](notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb): difusión de una enfermedad con un autómata celular probabilístico de tipo SIR. |
+| 3 | Simule un robot con tres sensores de distancia que recorre un espacio bidimensional con 4 objetos distribuidos aleatoriamente, sin chocar con ellos. | [`notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb`](notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb): robot autónomo con sensores frontal, izquierdo y derecho. |
+| 4 | Tome el plano de una ciudad pequeña, localice droguerías, centros de salud y colegios, y dibuje un diagrama de Voronoi por cada concepto. ¿Puede faltar alguno? ¿Hay relación entre los diagramas? | [`notebooks/Analisis_Servicios_Voronoi.ipynb`](notebooks/Analisis_Servicios_Voronoi.ipynb): análisis y generación de los diagramas a partir de los datos de [`notebooks/data/services.csv`](notebooks/data/services.csv). Las respuestas a las preguntas están en el documento. |
 
 El capítulo numera como 3 tanto el ejercicio del robot como el de Voronoi; aquí se numeran 3 y 4 para
 distinguirlos.
 
 ## Descripción de los programas
 
-### Ejercicio 2. Difusión de una enfermedad (`ejercicios/modelo-epidemia-ac`)
+### Ejercicio 2. Difusión de una enfermedad (`notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb`)
 
 Autómata celular probabilístico sobre una cuadrícula de 50 × 50 (2 500 personas). Cada celda está en uno de
 tres estados: susceptible, infectada o recuperada. Se usa la vecindad de Moore (8 vecinos) y estas reglas de
@@ -31,16 +32,16 @@ transición:
 - **Infectado → Recuperado**, con probabilidad fija por paso.
 - **Recuperado** permanece recuperado.
 
-Parámetros en `epidemia.py`: `PROB_CONTAGIO = 0.2`, `PROB_RECUPERACION = 0.05`, `INFECTADOS_INICIALES = 5` y
-`PASOS = 200`. Con β = 0.2, una persona con tres vecinos infectados se contagia con probabilidad
+El modelo usa como parámetros una probabilidad de contagio β = 0.2, una probabilidad de recuperación de
+0.05, cinco infectados iniciales y 200 pasos. Con β = 0.2, una persona con tres vecinos infectados se contagia con probabilidad
 1 − 0.8³ ≈ 0.49 en ese paso.
 
 La simulación se anima con Matplotlib y muestra la cuadrícula junto con la evolución de las tres
 poblaciones. Como las transiciones son aleatorias, cada ejecución da un resultado distinto.
 
-### Ejercicio 3. Robot con tres sensores (`ejercicios/simulacion-robot-sensores`)
+### Ejercicio 3. Robot con tres sensores (`notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb`)
 
-Simulación en Pygame de un robot circular que se mueve en un espacio de 1000 × 700 con cuatro obstáculos
+Simulación de un robot circular que se mueve en un espacio de 1000 × 700 con cuatro obstáculos
 colocados al azar, lejos del punto de partida y separados entre sí.
 
 - **Sensores.** Tres rayos, uno frontal y dos laterales a ±45°, con alcance máximo de 180 unidades. Cada
@@ -49,13 +50,13 @@ colocados al azar, lejos del punto de partida y separados entre sí.
   más espacio libre. Si el obstáculo está a un lado, gira hacia el lado contrario.
 - **Seguridad.** Si aun así hay contacto, el robot retrocede y gira 90°. En los bordes de la pantalla rebota.
 
-La ventana muestra los tres rayos de los sensores y sus lecturas en tiempo real.
+La animación muestra los tres rayos de los sensores y sus lecturas en tiempo real.
 
-### Ejercicio 4. Diagramas de Voronoi (`ejercicios/analisis-mediante-diagramas-de-voronoi`)
+### Ejercicio 4. Diagramas de Voronoi (`notebooks/Analisis_Servicios_Voronoi.ipynb`)
 
 A partir de la ubicación de droguerías, centros de salud y colegios de la cabecera de un municipio pequeño
-(`data/services.csv`), el script `scripts/voronoi_services.py` genera un diagrama de Voronoi por cada tipo de
-servicio y uno con la distribución conjunta. Las figuras quedan en `figures/`.
+([`notebooks/data/services.csv`](notebooks/data/services.csv)), el notebook genera un diagrama de Voronoi por cada tipo de
+servicio y uno con la distribución conjunta. Las figuras quedan en [`notebooks/figures`](notebooks/figures/).
 
 La conclusión principal, desarrollada en el documento, es que las celdas grandes señalan zonas geométricamente
 más alejadas del servicio y son candidatas a estudiar, pero no demuestran por sí solas que falte un
@@ -67,41 +68,39 @@ establecimiento: para eso haría falta cruzarlas con población, demanda, capaci
 2. Automatas celulares/
 ├── README.md
 ├── Documento_Automatas_celulares.pdf
-└── ejercicios/
-    ├── modelo-epidemia-ac/
-    │   ├── README.md
-    │   ├── epidemia.py
-    │   └── requirements.txt
-    ├── simulacion-robot-sensores/
-    │   ├── README.md
-    │   ├── main.py
-    │   └── requirements.txt
-    └── analisis-mediante-diagramas-de-voronoi/
-        ├── README.md
-        ├── requirements.txt
-        ├── data/services.csv
-        ├── scripts/voronoi_services.py
-        └── figures/
+└── notebooks/
+  ├── Analisis_Servicios_Voronoi.ipynb
+  ├── Ejercicio_2_Modelo_epidemia_AC.ipynb
+  ├── Ejercicio_3_Simulacion_Robot_Sensores.ipynb
+  ├── data/
+  │   └── services.csv
+  └── figures/
+    ├── distribucion_conjunta.png
+    ├── voronoi_colegios.png
+    ├── voronoi_farmacias.png
+    └── voronoi_salud.png
 ```
 
 ## Ejecución
 
-Cada programa tiene sus propias dependencias. Desde la carpeta del programa, dentro de `ejercicios/`:
+Los ejercicios están implementados como notebooks de Jupyter. Desde esta carpeta, instala las dependencias
+que use cada notebook en el entorno de Python seleccionado en VS Code o Jupyter y abre la carpeta
+[`notebooks`](notebooks/):
 
 ```bash
-cd ejercicios/modelo-epidemia-ac
-pip install -r requirements.txt
-python epidemia.py
+cd notebooks
+jupyter notebook
 ```
 
-| Programa | Carpeta | Comando | Dependencias |
+| Ejercicio | Notebook | Recursos |
 |---|---|---|---|
-| Difusión de una enfermedad | `ejercicios/modelo-epidemia-ac` | `python epidemia.py` | numpy, matplotlib |
-| Robot con tres sensores | `ejercicios/simulacion-robot-sensores` | `python main.py` | pygame |
-| Diagramas de Voronoi | `ejercicios/analisis-mediante-diagramas-de-voronoi` | `python scripts/voronoi_services.py` | ver su `requirements.txt` |
+| Difusión de una enfermedad | `notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb` | `numpy`, `matplotlib` |
+| Robot con tres sensores | `notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb` | entorno de Jupyter y librerías importadas por el notebook |
+| Diagramas de Voronoi | `notebooks/Analisis_Servicios_Voronoi.ipynb` | `notebooks/data/services.csv`; genera resultados en `notebooks/figures/` |
 
-Los dos primeros abren una ventana con la animación, así que deben ejecutarse en un equipo local y no en
-Colab.
+Los notebooks de simulación incluyen animaciones y pueden requerir ejecución local, según el backend gráfico
+disponible. Conviene ejecutar sus celdas en orden. El notebook de Voronoi puede volver a generar las figuras
+incluidas en `notebooks/figures/`.
 
 
 ## Referencias
