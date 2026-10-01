@@ -3,8 +3,7 @@
 Desarrollo de los ejercicios y problemas propuestos en la sección 2.10 del capítulo *Autómatas Celulares*
 (José J. Martínez P.), curso de Inteligencia Artificial y Minirobots.
 
-El documento [`Documento_Automatas_celulares.pdf`](Documento_Automatas_celulares.pdf) contiene las
-respuestas escritas. Las implementaciones y los análisis reproducibles están en la carpeta
+El documento [`Documento_Automatas_celulares.pdf`](Documento_Automatas_celulares.pdf) contiene las respuestas escritas. Las implementaciones y los análisis reproducibles están en la carpeta
 [`notebooks`](notebooks/).
 
 ## Ejercicios desarrollados
@@ -14,7 +13,7 @@ respuestas escritas. Las implementaciones y los análisis reproducibles están e
 | 1 | Observe sus comportamientos en la casa, en la universidad y en el medio de transporte que utiliza. Encuentre las reglas básicas de cada escenario. | En el documento. Describe cada escenario como un sistema con reglas explícitas e implícitas y lista sus reglas básicas: 6 para la casa, 6 para la universidad y 7 para el transporte público (TransMilenio). |
 | 2 | Desarrolle un modelo de difusión de una enfermedad, un incendio forestal o una moda usando ACs probabilísticos, o simule un robot con dos ruedas que evite obstáculos. | [`notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb`](notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb): difusión de una enfermedad con un autómata celular probabilístico de tipo SIR. |
 | 3 | Simule un robot con tres sensores de distancia que recorre un espacio bidimensional con 4 objetos distribuidos aleatoriamente, sin chocar con ellos. | [`notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb`](notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb): robot autónomo con sensores frontal, izquierdo y derecho. |
-| 4 | Tome el plano de una ciudad pequeña, localice droguerías, centros de salud y colegios, y dibuje un diagrama de Voronoi por cada concepto. ¿Puede faltar alguno? ¿Hay relación entre los diagramas? | [`notebooks/Analisis_Servicios_Voronoi.ipynb`](notebooks/Analisis_Servicios_Voronoi.ipynb): análisis y generación de los diagramas a partir de los datos de [`notebooks/data/services.csv`](notebooks/data/services.csv). Las respuestas a las preguntas están en el documento. |
+| 4 | Tome el plano de una ciudad pequeña, localice droguerías, centros de salud y colegios, y dibuje un diagrama de Voronoi por cada concepto. ¿Puede faltar alguno? ¿Hay relación entre los diagramas? | [`notebooks/Ejercicio_4_Analisis_Servicios_Voronoi.ipynb`](notebooks/Analisis_Servicios_Voronoi.ipynb): análisis y generación de los diagramas a partir de los datos de [`notebooks/data/services.csv`](notebooks/data/services.csv). Las respuestas a las preguntas están en el documento. |
 
 El capítulo numera como 3 tanto el ejercicio del robot como el de Voronoi; aquí se numeran 3 y 4 para
 distinguirlos.
@@ -52,7 +51,7 @@ colocados al azar, lejos del punto de partida y separados entre sí.
 
 La animación muestra los tres rayos de los sensores y sus lecturas en tiempo real.
 
-### Ejercicio 4. Diagramas de Voronoi (`notebooks/Analisis_Servicios_Voronoi.ipynb`)
+### Ejercicio 4. Diagramas de Voronoi (`notebooks/Ejercicio_4_Analisis_Servicios_Voronoi.ipynb`)
 
 A partir de la ubicación de droguerías, centros de salud y colegios de la cabecera de un municipio pequeño
 ([`notebooks/data/services.csv`](notebooks/data/services.csv)), el notebook genera un diagrama de Voronoi por cada tipo de
@@ -69,9 +68,9 @@ establecimiento: para eso haría falta cruzarlas con población, demanda, capaci
 ├── README.md
 ├── Documento_Automatas_celulares.pdf
 └── notebooks/
-  ├── Analisis_Servicios_Voronoi.ipynb
   ├── Ejercicio_2_Modelo_epidemia_AC.ipynb
   ├── Ejercicio_3_Simulacion_Robot_Sensores.ipynb
+  ├── Ejercicio_4_Analisis_Servicios_Voronoi.ipynb
   ├── data/
   │   └── services.csv
   └── figures/
@@ -96,7 +95,7 @@ jupyter notebook
 |---|---|---|---|
 | Difusión de una enfermedad | `notebooks/Ejercicio_2_Modelo_epidemia_AC.ipynb` | `numpy`, `matplotlib` |
 | Robot con tres sensores | `notebooks/Ejercicio_3_Simulacion_Robot_Sensores.ipynb` | entorno de Jupyter y librerías importadas por el notebook |
-| Diagramas de Voronoi | `notebooks/Analisis_Servicios_Voronoi.ipynb` | `notebooks/data/services.csv`; genera resultados en `notebooks/figures/` |
+| Diagramas de Voronoi | `notebooks/Ejercicio_4_Analisis_Servicios_Voronoi.ipynb` | `notebooks/data/services.csv`; genera resultados en `notebooks/figures/` |
 
 Los notebooks de simulación incluyen animaciones y pueden requerir ejecución local, según el backend gráfico
 disponible. Conviene ejecutar sus celdas en orden. El notebook de Voronoi puede volver a generar las figuras
