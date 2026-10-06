@@ -10,6 +10,8 @@ Los programas se entregan como notebooks de Jupyter, ejecutados y con sus result
 | Ejercicio | Notebook | Herramienta | Verificación | Resultado principal |
 |---|---|---|---|---|
 | 1. Skills propias a partir de las de [AI Hero](https://www.aihero.dev/) | [Ejercicio 1](notebooks/Ejercicio_1_Definicion_de_Skills.ipynb) | Formato *Agent Skills* (`SKILL.md` + plantillas + scripts en Python), pytest | Validación del formato de las 4 skills; prueba de activación de las descripciones (8/8); detección medida contra una referencia escrita a mano (45/45); flujo completo sobre los 7 documentos de la clase | De los 7 capítulos del curso salen 47 requerimientos, el estado de cada capítulo en el repositorio, 4 tickets, 10 criterios con prueba (14/14 casos, ciclo rojo-verde registrado) y un informe HTML |
+| 2. Chatbot para consultar manuales técnicos | [Ejercicio 2](notebooks/Ejercicio_2_Chatbot.ipynb) | RAG con Ollama + embeddings locales (`nomic-embed-text`, `llama3.2:3b`), Python, `requests`, PyMuPDF | Preparación del entorno con Ollama; carga desde Hugging Face o PDF; división, indexación y recuperación semántica; prueba de respuesta con fuentes | Chatbot que responde preguntas sobre manuales técnicos usando recuperación por similitud y muestra las fuentes consultadas |
+| 3. Chatbot con documentos de clase | [Ejercicio 3](notebooks/Ejercicio_3_Chatbot_con_documentos_de_clase.ipynb) | RAG con Ollama + embeddings locales (`bge-m3`, `llama3.2:3b`), Python, PyMuPDF | Carga de los PDFs de clase, división en fragmentos, indexación semántica, consultas con recuperación por similitud y citación de fuentes | Chatbot que responde preguntas sobre los materiales del curso usando contexto recuperado de los documentos y referencias a páginas concretas |
 
 ## Las cuatro skills
 
@@ -30,7 +32,9 @@ Los programas se entregan como notebooks de Jupyter, ejecutados y con sus result
 ├── requirements.txt
 ├── Documento_IA_Generativa.pdf
 ├── notebooks/
-│   └── Ejercicio_1_Definicion_de_Skills.ipynb
+│   ├── Ejercicio_1_Definicion_de_Skills.ipynb
+│   ├── Ejercicio_2_Chatbot.ipynb
+│   └── Ejercicio_3_Chatbot_con_documentos_de_clase.ipynb
 ├── documentos_clase/         los 7 PDF de la clase, entrada de la demostración
 ├── skills/                   las 4 skills (las escribe el notebook)
 ├── demo/                     salida del flujo completo (sección 10 del notebook)
