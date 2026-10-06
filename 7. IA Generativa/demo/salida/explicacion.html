@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agente de mantenimiento: consultas de repuestos y órdenes de trabajo</title>
+<style>
+  :root {
+    --fondo: #fbfaf7; --papel: #ffffff; --texto: #1f2328; --suave: #5b636e;
+    --linea: #e3e0d8; --acento: #1d5c8f; --codigo: #f3f1ec;
+    --ok: #1f7a46; --ok-fondo: #e6f4ec; --mal: #b42318; --mal-fondo: #fdecea;
+    --aviso: #8a5a00; --aviso-fondo: #fff4dc; --info-fondo: #e8f1f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #15171a; --papel: #1c1f23; --texto: #e6e3dc; --suave: #a3a9b1;
+      --linea: #2e3237; --acento: #7db4e3; --codigo: #24282d;
+      --ok: #6fd39b; --ok-fondo: #173326; --mal: #f19a90; --mal-fondo: #3a1d1a;
+      --aviso: #f0c46a; --aviso-fondo: #352a12; --info-fondo: #182a3a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto);
+         font: 16px/1.65 Georgia, "Iowan Old Style", "Palatino Linotype", serif; }
+  .hoja { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
+  header { border-bottom: 2px solid var(--texto); padding-bottom: 18px; margin-bottom: 28px; }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--suave); font-style: italic; margin: 0; }
+  h2 { font-size: 1.35rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--linea); }
+  h2 .num { color: var(--acento); font-variant-numeric: tabular-nums; margin-right: 0.4em; }
+  h3 { font-size: 1.02rem; margin: 1.4em 0 0.4em; }
+  a { color: var(--acento); }
+  .metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0; }
+  .metrica { background: var(--papel); border: 1px solid var(--linea); border-radius: 6px; padding: 12px 14px; }
+  .metrica b { display: block; font: 600 1.6rem/1.2 ui-sans-serif, system-ui, sans-serif; color: var(--acento); }
+  .metrica span { font: 0.82rem/1.3 ui-sans-serif, system-ui, sans-serif; color: var(--suave); }
+  nav.indice { background: var(--papel); border: 1px solid var(--linea); border-radius: 6px; padding: 14px 20px; }
+  nav.indice ol { margin: 0; padding-left: 1.3em; columns: 2; font: 0.92rem/1.7 ui-sans-serif, system-ui, sans-serif; }
+  code { font: 0.86em ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; background: var(--codigo);
+         padding: 0.1em 0.35em; border-radius: 3px; }
+  figure.codigo { margin: 1em 0; }
+  figure.codigo figcaption { font: 0.8rem ui-sans-serif, system-ui, sans-serif; color: var(--suave); margin-bottom: 4px; }
+  pre { background: var(--codigo); border: 1px solid var(--linea); border-radius: 6px; padding: 12px 14px;
+        overflow-x: auto; font: 0.84rem/1.5 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  .tabla { overflow-x: auto; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; font: 0.88rem/1.45 ui-sans-serif, system-ui, sans-serif; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--linea); }
+  th { border-bottom: 2px solid var(--texto); font-weight: 600; }
+  td:first-child { white-space: nowrap; }
+  td.ok { color: var(--ok); background: var(--ok-fondo); font-weight: 600; }
+  td.mal { color: var(--mal); background: var(--mal-fondo); font-weight: 600; }
+  .nota { border-left: 4px solid var(--acento); background: var(--info-fondo); padding: 10px 14px; margin: 1em 0; border-radius: 0 6px 6px 0; }
+  .nota.ok { border-color: var(--ok); background: var(--ok-fondo); }
+  .nota.aviso { border-color: var(--aviso); background: var(--aviso-fondo); }
+  ol.pasos { list-style: none; counter-reset: paso; padding: 0; }
+  ol.pasos li { counter-increment: paso; position: relative; padding: 0 0 14px 46px; }
+  ol.pasos li::before { content: counter(paso); position: absolute; left: 0; top: 0; width: 30px; height: 30px;
+        border-radius: 50%; background: var(--acento); color: var(--papel); text-align: center;
+        font: 600 0.9rem/30px ui-sans-serif, system-ui, sans-serif; }
+  ol.pasos li:not(:last-child)::after { content: ""; position: absolute; left: 14px; top: 32px; bottom: 2px; border-left: 2px solid var(--linea); }
+  footer { margin-top: 48px; color: var(--suave); font-size: 0.85rem; border-top: 1px solid var(--linea); padding-top: 12px; }
+  @media (max-width: 600px) { nav.indice ol { columns: 1; } h1 { font-size: 1.7rem; } }
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .hoja { padding: 0; max-width: none; }
+    nav.indice { display: none; }
+    h2 { break-after: avoid; } pre, table, .nota { break-inside: avoid; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<main class="hoja">
+<header>
+  <h1>Agente de mantenimiento: consultas de repuestos y órdenes de trabajo</h1>
+  <p class="sub">Numeral 4 del ejercicio 7.11 · tickets 01 y 02 · flujo de skills del Ejercicio 7.11.1</p>
+</header>
+<div class="metricas"><div class="metrica"><b>47</b><span>requerimientos capturados de los 7 documentos del curso</span></div><div class="metrica"><b>2 de 4</b><span>tickets implementados (03 y 04 quedan documentados)</span></div><div class="metrica"><b>10/10</b><span>criterios de aceptación con prueba</span></div><div class="metrica"><b>14/14</b><span>casos de prueba que pasan (0.03 s)</span></div></div>
+<nav class="indice" aria-label="Contenido"><ol><li><a href="#resumen">Resumen</a></li><li><a href="#problema">Problema y contexto</a></li><li><a href="#decisiones">Decisiones de diseño</a></li><li><a href="#funcionamiento">Cómo funciona</a></li><li><a href="#codigo">Código clave</a></li><li><a href="#pruebas">Pruebas y resultados</a></li><li><a href="#limitaciones">Limitaciones y trabajo futuro</a></li><li><a href="#reproducir">Cómo reproducir</a></li></ol></nav>
+<section id="resumen"><h2><span class="num">1.</span>Resumen</h2>
+<p>Se implementaron las dos primeras rebanadas del agente de mantenimiento: <b>consultar un repuesto y sus existencias</b> (ticket 01) y <b>registrar una orden de trabajo en el historial de fallas</b> (ticket 02). Los 10 criterios de aceptación tienen una prueba automatizada; los 14 casos pasan y cada uno se vio fallar antes de escribir el código que lo satisface.</p>
+<div class="nota ok">Listo para el ticket 03, que conecta estas funciones con un modelo de lenguaje local (Ollama) como herramientas del agente.</div></section>
+<section id="problema"><h2><span class="num">2.</span>Problema y contexto</h2>
+<p>La skill <code>capturar-requerimientos</code> leyó los 7 documentos del curso y obtuvo 47 requerimientos. De ellos, el numeral 4 del capítulo 7 pide un <b>agente de mantenimiento</b> que busque un repuesto, consulte el almacén, genere una orden de trabajo y actualice el historial de fallas; el capítulo 1 fija las condiciones de entrega. Estos son los requerimientos que cubren los tickets 01 y 02:</p>
+<div class="tabla"><table><thead><tr><th>ID</th><th>Requerimiento</th><th>Fuente</th><th>Cita</th></tr></thead><tbody><tr><td>RES-02</td><td>Los programas se presentan en Jupyter Notebook o en Colab</td><td>Cap. 1, p.10 l.13</td><td>&quot;Los programas deben presentarse en Jupyter Notebook o en COLAB.&quot;</td></tr><tr><td>RES-03</td><td>Cada programa se incluye en un documento que describe sus partes y sus resultados</td><td>Cap. 1, p.10 l.13</td><td>&quot;Cada uno debe estar incluido en un documento que describa sus diferentes partes y sus resultados.&quot;</td></tr><tr><td>RF-7.4</td><td>Desarrollar un agente de mantenimiento</td><td>Cap. 7, p.23 l.12</td><td>&quot;Desarrollar un agente de mantenimiento que:&quot;</td></tr><tr><td>RF-7.4a</td><td>El agente busca un repuesto por su código</td><td>Cap. 7, p.23 l.13</td><td>&quot;Busque un repuesto (Código)&quot;</td></tr><tr><td>RF-7.4b</td><td>El agente consulta el almacén por código</td><td>Cap. 7, p.23 l.14</td><td>&quot;Consulte en el almacen (Código)&quot;</td></tr><tr><td>RF-7.4c</td><td>El agente genera una orden de trabajo con la falla y el equipo</td><td>Cap. 7, p.23 l.15</td><td>&quot;Genere una orden de trabajo (falla, equipo)&quot;</td></tr><tr><td>RF-7.4d</td><td>El agente actualiza el historial de fallas</td><td>Cap. 7, p.23 l.16</td><td>&quot;Actualice el historial de fallas&quot;</td></tr></tbody></table></div>
+<div class="nota aviso">El curso no define el formato del código de repuesto, de la orden ni del historial (pregunta P-04). Los formatos usados (REP-0000, OT-0000, CSV) son el supuesto S-03 del equipo.</div></section>
+<section id="decisiones"><h2><span class="num">3.</span>Decisiones de diseño</h2>
+<div class="tabla"><table><thead><tr><th>Decisión</th><th>Alternativa descartada</th><th>Razón</th></tr></thead><tbody><tr><td>Catálogo y almacén se reciben como diccionarios</td><td>Leer un archivo fijo</td><td>El curso no entrega datos de repuestos; así su origen no toca la lógica ni las pruebas</td></tr><tr><td>Códigos en minúsculas se rechazan</td><td>Convertirlos a mayúsculas</td><td>El formato REP-0000 es un supuesto (S-03); aceptar variantes se decide al resolver P-04</td></tr><tr><td>El consecutivo es el mayor existente más uno</td><td>Contar las órdenes</td><td>Contar repite identificadores si hay huecos (OT-0001, OT-0005 → OT-0003 ya podría existir)</td></tr><tr><td>Historial en CSV</td><td>Una base de datos</td><td>Supuesto S-03: CSV se abre en cualquier hoja de cálculo y no requiere librerías</td></tr><tr><td>La fecha de la orden es un parámetro opcional</td><td>Usar siempre la fecha del sistema</td><td>Las pruebas no deben depender del reloj</td></tr></tbody></table></div></section>
+<section id="funcionamiento"><h2><span class="num">4.</span>Cómo funciona</h2>
+<ol class="pasos"><li><b>Validar el código.</b> Se quitan los espacios alrededor y se exige el formato <code>REP-0000</code>; si no lo cumple, <code>ValueError</code> con un mensaje que dice qué se esperaba.</li><li><b>Consultar.</b> <code>buscar_repuesto</code> devuelve descripción y equipos, o <code>None</code> si el código no existe; <code>consultar_existencias</code> devuelve las unidades, 0 si no figura.</li><li><b>Generar la orden.</b> <code>generar_orden</code> valida que haya equipo y falla, calcula el siguiente consecutivo <code>OT-0000</code> y crea la orden en estado <code>abierta</code>.</li><li><b>Actualizar el historial.</b> <code>actualizar_historial</code> agrega la orden al CSV, lo crea con encabezado la primera vez y devuelve el total de registros.</li></ol></section>
+<section id="codigo"><h2><span class="num">5.</span>Código clave</h2>
+<figure class="codigo"><figcaption>repuestos.py · validación del formato (S-03)</figcaption><pre><code class="lenguaje-python">def _normalizar(codigo):
+    &quot;Quita espacios alrededor y exige el formato REP-0000 (supuesto S-03).&quot;
+    codigo = str(codigo).strip()
+    if not FORMATO.fullmatch(codigo):
+        raise ValueError(f&quot;Código &#x27;{codigo}&#x27; inválido: se espera el formato REP-0000.&quot;)
+    return codigo</code></pre></figure>
+<figure class="codigo"><figcaption>ordenes.py · orden de trabajo (RF-7.4c)</figcaption><pre><code class="lenguaje-python">def generar_orden(equipo, falla, ordenes, fecha=None):
+    &quot;Crea una orden abierta con consecutivo único y la agrega a la lista (RF-7.4c, S-03).&quot;
+    equipo, falla = str(equipo).strip(), str(falla).strip()
+    if not equipo or not falla:
+        raise ValueError(&quot;La orden necesita el equipo y la descripción de la falla.&quot;)
+    mayor = max((int(o[&quot;id&quot;].split(&quot;-&quot;)[1]) for o in ordenes), default=0)
+    orden = {&quot;id&quot;: f&quot;OT-{mayor + 1:04d}&quot;, &quot;equipo&quot;: equipo, &quot;falla&quot;: falla,
+             &quot;fecha&quot;: fecha or date.today().isoformat(), &quot;estado&quot;: &quot;abierta&quot;}
+    ordenes.append(orden)
+    return orden</code></pre></figure></section>
+<section id="pruebas"><h2><span class="num">6.</span>Pruebas y resultados</h2>
+<p>Cada criterio se ejecutó primero contra la interfaz vacía (<code>NotImplementedError</code>) y debía fallar; después contra la implementación y debía pasar. Resultados leídos de <code>bitacora_tdd.json</code>:</p>
+<div class="tabla"><table><thead><tr><th>Criterio</th><th>Enunciado</th><th>Prueba</th><th>Rojo</th><th>Verde</th></tr></thead><tbody><tr><td>CA-01.1</td><td>Dado un catálogo con REP-0042 &quot;Motor DC 6 V&quot; compatible con R-01 y R-07, cuando se busca R…</td><td>test_busqueda_devuelve_descripcion_y_equipos</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-01.2</td><td>Dado cualquiera de los códigos &quot;42&quot;, &quot;REP-42&quot;, &quot;rep-0042&quot; y &quot;REP-00420&quot;, cuando se busca, …</td><td>test_rechaza_codigo_con_formato_invalido</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-01.3</td><td>Dado un código con formato válido que no está en el catálogo (REP-9999), cuando se busca, …</td><td>test_codigo_valido_no_registrado_devuelve_none</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-01.4</td><td>Dado un almacén con 3 unidades de REP-0042, cuando se consultan sus existencias, entonces …</td><td>test_existencias_de_repuesto_en_almacen</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-01.5</td><td>Dado un código válido que no figura en el almacén, cuando se consultan sus existencias, en…</td><td>test_existencias_de_repuesto_ausente_es_cero</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-02.1</td><td>Dado que no hay órdenes, cuando se genera una para el equipo R-07 con la falla &quot;rueda izqu…</td><td>test_primera_orden_es_ot_0001_y_queda_abierta</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-02.2</td><td>Dado que existen OT-0001 y OT-0005, cuando se genera una nueva orden, entonces su identifi…</td><td>test_consecutivo_sigue_al_mayor_existente</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-02.3</td><td>Dada una falla vacía o solo con espacios, cuando se intenta generar la orden, entonces se …</td><td>test_falla_vacia_se_rechaza_sin_crear_orden</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-02.4</td><td>Dado que el archivo de historial no existe, cuando se registra una orden, entonces se crea…</td><td>test_historial_inexistente_se_crea_con_encabezado</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr><tr><td>CA-02.5</td><td>Dado un historial con 1 registro, cuando se registra otra orden, entonces quedan 2 registr…</td><td>test_segundo_registro_conserva_el_primero</td><td class="ok">OK falla</td><td class="ok">OK pasa</td></tr></tbody></table></div>
+<figure class="codigo"><figcaption>Última línea de pytest</figcaption><pre><code class="lenguaje-text">============================== 14 passed in 0.03s ==============================</code></pre></figure></section>
+<section id="limitaciones"><h2><span class="num">7.</span>Limitaciones y trabajo futuro</h2>
+<ul><li>Los formatos de código, orden e historial son un supuesto (S-03) hasta resolver P-04.</li><li>El historial CSV no tiene bloqueo de archivo si dos técnicos escriben a la vez.</li><li>Todavía no es un agente: falta el ticket 03, la conversación con un modelo local que usa estas funciones como herramientas.</li><li>El ticket 04 (chatbot sobre los documentos del curso, numeral 3) está documentado pero no implementado.</li></ul></section>
+<section id="reproducir"><h2><span class="num">8.</span>Cómo reproducir</h2>
+<figure class="codigo"><pre><code class="lenguaje-bash">cd demo/proyecto
+python -m pytest -v
+python ../../skills/implementar-con-pruebas/scripts/trazabilidad.py tickets/01-consultar-repuesto-y-existencias.md tests</code></pre></figure></section>
+<footer>Documento generado con la skill <code>explicar-en-html</code> el 2026-10-04.</footer>
+</main>
+</body>
+</html>

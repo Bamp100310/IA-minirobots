@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITULO}}</title>
+<style>
+  :root {
+    --fondo: #fbfaf7; --papel: #ffffff; --texto: #1f2328; --suave: #5b636e;
+    --linea: #e3e0d8; --acento: #1d5c8f; --codigo: #f3f1ec;
+    --ok: #1f7a46; --ok-fondo: #e6f4ec; --mal: #b42318; --mal-fondo: #fdecea;
+    --aviso: #8a5a00; --aviso-fondo: #fff4dc; --info-fondo: #e8f1f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #15171a; --papel: #1c1f23; --texto: #e6e3dc; --suave: #a3a9b1;
+      --linea: #2e3237; --acento: #7db4e3; --codigo: #24282d;
+      --ok: #6fd39b; --ok-fondo: #173326; --mal: #f19a90; --mal-fondo: #3a1d1a;
+      --aviso: #f0c46a; --aviso-fondo: #352a12; --info-fondo: #182a3a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto);
+         font: 16px/1.65 Georgia, "Iowan Old Style", "Palatino Linotype", serif; }
+  .hoja { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
+  header { border-bottom: 2px solid var(--texto); padding-bottom: 18px; margin-bottom: 28px; }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--suave); font-style: italic; margin: 0; }
+  h2 { font-size: 1.35rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--linea); }
+  h2 .num { color: var(--acento); font-variant-numeric: tabular-nums; margin-right: 0.4em; }
+  h3 { font-size: 1.02rem; margin: 1.4em 0 0.4em; }
+  a { color: var(--acento); }
+  .metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0; }
+  .metrica { background: var(--papel); border: 1px solid var(--linea); border-radius: 6px; padding: 12px 14px; }
+  .metrica b { display: block; font: 600 1.6rem/1.2 ui-sans-serif, system-ui, sans-serif; color: var(--acento); }
+  .metrica span { font: 0.82rem/1.3 ui-sans-serif, system-ui, sans-serif; color: var(--suave); }
+  nav.indice { background: var(--papel); border: 1px solid var(--linea); border-radius: 6px; padding: 14px 20px; }
+  nav.indice ol { margin: 0; padding-left: 1.3em; columns: 2; font: 0.92rem/1.7 ui-sans-serif, system-ui, sans-serif; }
+  code { font: 0.86em ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; background: var(--codigo);
+         padding: 0.1em 0.35em; border-radius: 3px; }
+  figure.codigo { margin: 1em 0; }
+  figure.codigo figcaption { font: 0.8rem ui-sans-serif, system-ui, sans-serif; color: var(--suave); margin-bottom: 4px; }
+  pre { background: var(--codigo); border: 1px solid var(--linea); border-radius: 6px; padding: 12px 14px;
+        overflow-x: auto; font: 0.84rem/1.5 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  .tabla { overflow-x: auto; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; font: 0.88rem/1.45 ui-sans-serif, system-ui, sans-serif; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--linea); }
+  th { border-bottom: 2px solid var(--texto); font-weight: 600; }
+  td:first-child { white-space: nowrap; }
+  td.ok { color: var(--ok); background: var(--ok-fondo); font-weight: 600; }
+  td.mal { color: var(--mal); background: var(--mal-fondo); font-weight: 600; }
+  .nota { border-left: 4px solid var(--acento); background: var(--info-fondo); padding: 10px 14px; margin: 1em 0; border-radius: 0 6px 6px 0; }
+  .nota.ok { border-color: var(--ok); background: var(--ok-fondo); }
+  .nota.aviso { border-color: var(--aviso); background: var(--aviso-fondo); }
+  ol.pasos { list-style: none; counter-reset: paso; padding: 0; }
+  ol.pasos li { counter-increment: paso; position: relative; padding: 0 0 14px 46px; }
+  ol.pasos li::before { content: counter(paso); position: absolute; left: 0; top: 0; width: 30px; height: 30px;
+        border-radius: 50%; background: var(--acento); color: var(--papel); text-align: center;
+        font: 600 0.9rem/30px ui-sans-serif, system-ui, sans-serif; }
+  ol.pasos li:not(:last-child)::after { content: ""; position: absolute; left: 14px; top: 32px; bottom: 2px; border-left: 2px solid var(--linea); }
+  footer { margin-top: 48px; color: var(--suave); font-size: 0.85rem; border-top: 1px solid var(--linea); padding-top: 12px; }
+  @media (max-width: 600px) { nav.indice ol { columns: 1; } h1 { font-size: 1.7rem; } }
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .hoja { padding: 0; max-width: none; }
+    nav.indice { display: none; }
+    h2 { break-after: avoid; } pre, table, .nota { break-inside: avoid; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<main class="hoja">
+<header>
+  <h1>{{TITULO}}</h1>
+  <p class="sub">{{SUBTITULO}}</p>
+</header>
+{{METRICAS}}
+<nav class="indice" aria-label="Contenido"><ol>{{INDICE}}</ol></nav>
+{{SECCIONES}}
+<footer>Documento generado con la skill <code>explicar-en-html</code> el {{FECHA}}.</footer>
+</main>
+</body>
+</html>

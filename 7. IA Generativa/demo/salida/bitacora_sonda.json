@@ -1,0 +1,14 @@
+[
+  {
+    "momento": "2026-10-04T12:33:14",
+    "fase": "rojo",
+    "criterio": "",
+    "prueba": "tests/test_sonda.py::test_sonda",
+    "resultado": "falla",
+    "esperado": "falla",
+    "cumple": false,
+    "mensaje": "Falla por la razón equivocada (ModuleNotFoundError); cree primero la interfaz.",
+    "pytest": "\u001b[0m",
+    "segundos": 0.33
+  }
+]

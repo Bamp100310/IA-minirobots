@@ -1,0 +1,317 @@
+{
+  "titulo": "Agente de mantenimiento: consultas de repuestos y órdenes de trabajo",
+  "subtitulo": "Numeral 4 del ejercicio 7.11 · tickets 01 y 02 · flujo de skills del Ejercicio 7.11.1",
+  "metricas": [
+    {
+      "valor": "47",
+      "etiqueta": "requerimientos capturados de los 7 documentos del curso"
+    },
+    {
+      "valor": "2 de 4",
+      "etiqueta": "tickets implementados (03 y 04 quedan documentados)"
+    },
+    {
+      "valor": "10/10",
+      "etiqueta": "criterios de aceptación con prueba"
+    },
+    {
+      "valor": "14/14",
+      "etiqueta": "casos de prueba que pasan (0.03 s)"
+    }
+  ],
+  "secciones": [
+    {
+      "id": "resumen",
+      "titulo": "Resumen",
+      "bloques": [
+        {
+          "tipo": "parrafo",
+          "texto": "Se implementaron las dos primeras rebanadas del agente de mantenimiento: **consultar un repuesto y sus existencias** (ticket 01) y **registrar una orden de trabajo en el historial de fallas** (ticket 02). Los 10 criterios de aceptación tienen una prueba automatizada; los 14 casos pasan y cada uno se vio fallar antes de escribir el código que lo satisface."
+        },
+        {
+          "tipo": "nota",
+          "clase": "ok",
+          "texto": "Listo para el ticket 03, que conecta estas funciones con un modelo de lenguaje local (Ollama) como herramientas del agente."
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "titulo": "Problema y contexto",
+      "bloques": [
+        {
+          "tipo": "parrafo",
+          "texto": "La skill `capturar-requerimientos` leyó los 7 documentos del curso y obtuvo 47 requerimientos. De ellos, el numeral 4 del capítulo 7 pide un **agente de mantenimiento** que busque un repuesto, consulte el almacén, genere una orden de trabajo y actualice el historial de fallas; el capítulo 1 fija las condiciones de entrega. Estos son los requerimientos que cubren los tickets 01 y 02:"
+        },
+        {
+          "tipo": "tabla",
+          "encabezados": [
+            "ID",
+            "Requerimiento",
+            "Fuente",
+            "Cita"
+          ],
+          "filas": [
+            [
+              "RES-02",
+              "Los programas se presentan en Jupyter Notebook o en Colab",
+              "Cap. 1, p.10 l.13",
+              "\"Los programas deben presentarse en Jupyter Notebook o en COLAB.\""
+            ],
+            [
+              "RES-03",
+              "Cada programa se incluye en un documento que describe sus partes y sus resultados",
+              "Cap. 1, p.10 l.13",
+              "\"Cada uno debe estar incluido en un documento que describa sus diferentes partes y sus resultados.\""
+            ],
+            [
+              "RF-7.4",
+              "Desarrollar un agente de mantenimiento",
+              "Cap. 7, p.23 l.12",
+              "\"Desarrollar un agente de mantenimiento que:\""
+            ],
+            [
+              "RF-7.4a",
+              "El agente busca un repuesto por su código",
+              "Cap. 7, p.23 l.13",
+              "\"Busque un repuesto (Código)\""
+            ],
+            [
+              "RF-7.4b",
+              "El agente consulta el almacén por código",
+              "Cap. 7, p.23 l.14",
+              "\"Consulte en el almacen (Código)\""
+            ],
+            [
+              "RF-7.4c",
+              "El agente genera una orden de trabajo con la falla y el equipo",
+              "Cap. 7, p.23 l.15",
+              "\"Genere una orden de trabajo (falla, equipo)\""
+            ],
+            [
+              "RF-7.4d",
+              "El agente actualiza el historial de fallas",
+              "Cap. 7, p.23 l.16",
+              "\"Actualice el historial de fallas\""
+            ]
+          ]
+        },
+        {
+          "tipo": "nota",
+          "clase": "aviso",
+          "texto": "El curso no define el formato del código de repuesto, de la orden ni del historial (pregunta P-04). Los formatos usados (REP-0000, OT-0000, CSV) son el supuesto S-03 del equipo."
+        }
+      ]
+    },
+    {
+      "id": "decisiones",
+      "titulo": "Decisiones de diseño",
+      "bloques": [
+        {
+          "tipo": "tabla",
+          "encabezados": [
+            "Decisión",
+            "Alternativa descartada",
+            "Razón"
+          ],
+          "filas": [
+            [
+              "Catálogo y almacén se reciben como diccionarios",
+              "Leer un archivo fijo",
+              "El curso no entrega datos de repuestos; así su origen no toca la lógica ni las pruebas"
+            ],
+            [
+              "Códigos en minúsculas se rechazan",
+              "Convertirlos a mayúsculas",
+              "El formato REP-0000 es un supuesto (S-03); aceptar variantes se decide al resolver P-04"
+            ],
+            [
+              "El consecutivo es el mayor existente más uno",
+              "Contar las órdenes",
+              "Contar repite identificadores si hay huecos (OT-0001, OT-0005 → OT-0003 ya podría existir)"
+            ],
+            [
+              "Historial en CSV",
+              "Una base de datos",
+              "Supuesto S-03: CSV se abre en cualquier hoja de cálculo y no requiere librerías"
+            ],
+            [
+              "La fecha de la orden es un parámetro opcional",
+              "Usar siempre la fecha del sistema",
+              "Las pruebas no deben depender del reloj"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "funcionamiento",
+      "titulo": "Cómo funciona",
+      "bloques": [
+        {
+          "tipo": "pasos",
+          "items": [
+            {
+              "titulo": "Validar el código",
+              "texto": "Se quitan los espacios alrededor y se exige el formato `REP-0000`; si no lo cumple, `ValueError` con un mensaje que dice qué se esperaba."
+            },
+            {
+              "titulo": "Consultar",
+              "texto": "`buscar_repuesto` devuelve descripción y equipos, o `None` si el código no existe; `consultar_existencias` devuelve las unidades, 0 si no figura."
+            },
+            {
+              "titulo": "Generar la orden",
+              "texto": "`generar_orden` valida que haya equipo y falla, calcula el siguiente consecutivo `OT-0000` y crea la orden en estado `abierta`."
+            },
+            {
+              "titulo": "Actualizar el historial",
+              "texto": "`actualizar_historial` agrega la orden al CSV, lo crea con encabezado la primera vez y devuelve el total de registros."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codigo",
+      "titulo": "Código clave",
+      "bloques": [
+        {
+          "tipo": "codigo",
+          "lenguaje": "python",
+          "titulo": "repuestos.py · validación del formato (S-03)",
+          "texto": "def _normalizar(codigo):\n    \"Quita espacios alrededor y exige el formato REP-0000 (supuesto S-03).\"\n    codigo = str(codigo).strip()\n    if not FORMATO.fullmatch(codigo):\n        raise ValueError(f\"Código '{codigo}' inválido: se espera el formato REP-0000.\")\n    return codigo"
+        },
+        {
+          "tipo": "codigo",
+          "lenguaje": "python",
+          "titulo": "ordenes.py · orden de trabajo (RF-7.4c)",
+          "texto": "def generar_orden(equipo, falla, ordenes, fecha=None):\n    \"Crea una orden abierta con consecutivo único y la agrega a la lista (RF-7.4c, S-03).\"\n    equipo, falla = str(equipo).strip(), str(falla).strip()\n    if not equipo or not falla:\n        raise ValueError(\"La orden necesita el equipo y la descripción de la falla.\")\n    mayor = max((int(o[\"id\"].split(\"-\")[1]) for o in ordenes), default=0)\n    orden = {\"id\": f\"OT-{mayor + 1:04d}\", \"equipo\": equipo, \"falla\": falla,\n             \"fecha\": fecha or date.today().isoformat(), \"estado\": \"abierta\"}\n    ordenes.append(orden)\n    return orden"
+        }
+      ]
+    },
+    {
+      "id": "pruebas",
+      "titulo": "Pruebas y resultados",
+      "bloques": [
+        {
+          "tipo": "parrafo",
+          "texto": "Cada criterio se ejecutó primero contra la interfaz vacía (`NotImplementedError`) y debía fallar; después contra la implementación y debía pasar. Resultados leídos de `bitacora_tdd.json`:"
+        },
+        {
+          "tipo": "tabla",
+          "encabezados": [
+            "Criterio",
+            "Enunciado",
+            "Prueba",
+            "Rojo",
+            "Verde"
+          ],
+          "filas": [
+            [
+              "CA-01.1",
+              "Dado un catálogo con REP-0042 \"Motor DC 6 V\" compatible con R-01 y R-07, cuando se busca R…",
+              "test_busqueda_devuelve_descripcion_y_equipos",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-01.2",
+              "Dado cualquiera de los códigos \"42\", \"REP-42\", \"rep-0042\" y \"REP-00420\", cuando se busca, …",
+              "test_rechaza_codigo_con_formato_invalido",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-01.3",
+              "Dado un código con formato válido que no está en el catálogo (REP-9999), cuando se busca, …",
+              "test_codigo_valido_no_registrado_devuelve_none",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-01.4",
+              "Dado un almacén con 3 unidades de REP-0042, cuando se consultan sus existencias, entonces …",
+              "test_existencias_de_repuesto_en_almacen",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-01.5",
+              "Dado un código válido que no figura en el almacén, cuando se consultan sus existencias, en…",
+              "test_existencias_de_repuesto_ausente_es_cero",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-02.1",
+              "Dado que no hay órdenes, cuando se genera una para el equipo R-07 con la falla \"rueda izqu…",
+              "test_primera_orden_es_ot_0001_y_queda_abierta",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-02.2",
+              "Dado que existen OT-0001 y OT-0005, cuando se genera una nueva orden, entonces su identifi…",
+              "test_consecutivo_sigue_al_mayor_existente",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-02.3",
+              "Dada una falla vacía o solo con espacios, cuando se intenta generar la orden, entonces se …",
+              "test_falla_vacia_se_rechaza_sin_crear_orden",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-02.4",
+              "Dado que el archivo de historial no existe, cuando se registra una orden, entonces se crea…",
+              "test_historial_inexistente_se_crea_con_encabezado",
+              "OK falla",
+              "OK pasa"
+            ],
+            [
+              "CA-02.5",
+              "Dado un historial con 1 registro, cuando se registra otra orden, entonces quedan 2 registr…",
+              "test_segundo_registro_conserva_el_primero",
+              "OK falla",
+              "OK pasa"
+            ]
+          ]
+        },
+        {
+          "tipo": "codigo",
+          "lenguaje": "text",
+          "titulo": "Última línea de pytest",
+          "texto": "============================== 14 passed in 0.03s =============================="
+        }
+      ]
+    },
+    {
+      "id": "limitaciones",
+      "titulo": "Limitaciones y trabajo futuro",
+      "bloques": [
+        {
+          "tipo": "lista",
+          "items": [
+            "Los formatos de código, orden e historial son un supuesto (S-03) hasta resolver P-04.",
+            "El historial CSV no tiene bloqueo de archivo si dos técnicos escriben a la vez.",
+            "Todavía no es un agente: falta el ticket 03, la conversación con un modelo local que usa estas funciones como herramientas.",
+            "El ticket 04 (chatbot sobre los documentos del curso, numeral 3) está documentado pero no implementado."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reproducir",
+      "titulo": "Cómo reproducir",
+      "bloques": [
+        {
+          "tipo": "codigo",
+          "lenguaje": "bash",
+          "texto": "cd demo/proyecto\npython -m pytest -v\npython ../../skills/implementar-con-pruebas/scripts/trazabilidad.py tickets/01-consultar-repuesto-y-existencias.md tests"
+        }
+      ]
+    }
+  ]
+}

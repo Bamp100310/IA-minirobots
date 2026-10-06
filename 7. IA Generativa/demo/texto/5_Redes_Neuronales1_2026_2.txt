@@ -1,0 +1,1276 @@
+### pagina 1
+ 
+5. INTRODUCCION A LAS REDES NEURONALES ARTIFICIALES 
+José J. Martínez P. 
+ 
+jmcursosingenieria111@gmail.com 
+Septiembre  2026 
+ 
+5.1 Introducción 
+Una de las fuentes de datos más importantes de los seres vivos son los datos provenientes  del 
+ambiente. Los filtran nuestros ojos, nuestros oídos y también otros sentidos. La principal fuente de 
+supervivencia de las especies proviene de estos datos que internamente analiza cada animal en su 
+cerebro, buscando patrones para determinar si hay presas, calculando el esfuerzo para atraparlas, 
+o si son presas  para eludir los predadores . De esa interacción permanente con el ambiente 
+realmente se hace Machine Learning, pues son muchos los datos que llegan permanentemente  y 
+se van almacenando, a partir de los cuales se  logra el conocimiento. En la figura 5.1 , e l pájaro 
+observa la mariposa y su modelo mental reconoce el tipo de mariposa, para tomar una decisión. 
+ 
+ 
+Figura 5.1. Modelo mental para predecir. 
+ 
+El modelo mental elimina detalles no pertinentes y enfatiza en los detalles de interés. En este caso 
+el pájaro, filtra de la cantidad de datos que ofrece el ambiente  los importantes para su toma de 
+decisiones, (los features) y con base en su visión  y otros sentidos, encuentra patrones y actúa en 
+consecuencia. Cuando el agente no detecta apropiadamente el patrón, pierde esfuerzos y debe 
+realizar c ambios en su estructura mental para  adaptar el modelo que le permita una mejor 
+anticipación de las consecuencias, cuando se encuentre nuevamente con ese patrón o uno similar. 
+Los agentes que fallan pierden recursos que generalmente favorecen a los exitosos.  
+ 
+Ese cambio en su modelo mental es lo que llamamos aprendizaje a partir de la  experiencia. Si se 
+examinan problemas, cuya descripción algorítmica es muy compleja, como identificar en fracciones 
+de segundo una persona entre una multitud, sus soluciones tienen una característica común: la 
+experiencia. Los animales superiores, como el hombre, son capaces de resolver estas situa ciones 
+acudiendo a la experiencia acumulada.
+### pagina 2
+Así, de manera muy simplista, es razonable pensar que una forma de solucionar este tipo de 
+problemas es construir sistemas que sean capaces de simular esta propiedad. La observación 
+anterior fue considerada po r los científicos de ciencias de la computación en lo que se denomina 
+Neurocomputación cuyo objeto de estudio son las Redes Neuronales Artificiales, RNAs. Las RNAs no 
+son más que un modelo artificial y simplificado del cerebro de los animales . Una red neuronal 
+artificial es un sistema para el procesamiento de datos, cuya unidad básica de procesamiento está 
+inspirada en la neurona.  
+ 
+En el artículo “A Logical Calculus of the Ideas Inmanent in Nervious Activity” de MacCulloch y Pitts 
+(1943) se describe el primer modelo de redes neuronales. Pocos años después Frank Rosemblat 
+publicó el concepto de perceptrón. La neurona artificial o perceptrón es el bloque de construcción 
+y unidad básica de proceso de una red neuronal artificial. Marvin Minsky, junto con Seymor Papert, 
+escribieron el libro “P erceptrones”, donde se establece cómo una sola neurona es incapaz de 
+implementar una función como XOR, y llegaron a que las grandes redes también tienen limitaciones 
+similares. Este concepto limitó el desarrollo de las r edes neuronales artificiales por 
+aproximadamente diez años. Luego se retomó el tema y tuvo un primer florecimiento a finales de 
+los 80s y comienzos de los 90s. A finales de los 90s disminuyo nuevamente el interés , pues se 
+consideró que solo resolvían probl emas de juguete . En 2005, G. Hinton, premio Nobel de Física 
+2024, con una red neuronal profunda pudo reconocer dígitos escritos a  mano con un 98% de 
+precisión. Los avances han continuado  y en 2018, se desarrolló el Transformer, una arquitectura de 
+red, que permitió producir las herramientas de IA generativa,  lo que dio la oportunidad a todos los 
+seres humanos de entrar en el mundo de la IA. De manera que las redes neuronales son la columna 
+vertebral de todos estos nuevos desarrollos.  
+ 
+ 
+5.2 Modelos de Neuronas 
+5.2.1 Neurona Natural  
+La neurona natural, de manera muy simplificada para nuestro interés, consta de un núcleo, un 
+cuerpo denominado soma, al cual están conectadas unas fibras nerviosas llamadas dendritas, fibras 
+terminales de entrada, y un axón, que es una fibra delgada y larga que se divide en su extremo en 
+una serie de fibras terminales de salida.  
+ 
+ 
+ 
+ 
+Figura 5.2. Esquema de una neurona natural.
+### pagina 3
+ 
+ 
+La neurona recibe señales de entrada, provenientes de otras células nerviosas, por las dendritas de 
+la neurona. Las neuronas reciben impulsos de los axones de otras neuronas a través de una conexión 
+llamada sinapsis. La sinapsis (del griego “sin”, que sign ifica “con” y “haptenia” , que significa “con 
+firmeza”) es una conexión más fuerte o más débil dependiendo de la importancia de la señal que 
+llega de la otra neurona. Las señales a través de las cuales se permite la captación y el proceso de 
+control y coordinación de los órganos son de tipo eléctrico. El axón es el encargado de conducir el 
+impulso nervioso desde el soma de una neurona hacia otras células nerviosas. 
+  
+Las neuronas transmiten su señal eléctrica a consecuencia de un cambio transitorio en la 
+permeabilidad de la membrana plasmática. Cuando el potencial de una membrana, es decir, la suma 
+de todas las señales de entrada se despolariza más allá de un umbral (de 65mV a 55mV), la célula 
+dispara un potencial de acción que se envía a través del axón, com o señal de salida de la neurona. 
+El ser humano tiene en promedio 8.610 neuronas y en promedio cada neurona tiene 6 .000 
+conexiones sinápticas, conformando una red con 5.214 enlaces, algo realmente impresionante. 
+ 
+ 
+5.2.2 NEURONA ARTIFICIAL  
+Es un modelo matemático, planteado en términos vectoriales  que recibe una serie de señales 
+(valores) 𝑿 de entrada, que representa el conjunto de dendritas, ponderadas por un peso 𝑾, que 
+representa el conjunto de sinapsis, y produce una señal de salida 𝒁, que representa el potencial de 
+salida del axón. La variable representa el umbral θ o el mínimo potencial a partir del cual se dispara 
+el axón. Figura 5.3. 
+ 
+ 
+ 
+Figura 5.3 Neurona Artificial, modelo abstracto de una neurona natural 
+ 
+Donde 
+𝑍 = −𝜃 + (𝑤1 𝑥1 + 𝑤2 𝑥2 +, … , 𝑤𝑗 𝑥𝑗 +, … , +𝑤𝑛 𝑥𝑛 )  = ∑ 𝑤𝑗𝑥𝑗
+𝑛
+𝑗=1 −  𝜃,  
+Para propósitos de notación, hacemos 𝜃 =  −𝑏 (bias).Esta notación es muy importante ya que 
+nos permite trabajar todo el desarrollo matemático en forma vectorial. Entonces tenemos que:
+### pagina 4
+ 
+ 
+𝑧 = ∑ 𝑤𝑗𝑥𝑗
+𝑛
+𝑗=1
++  𝑏 
+𝑧 =  𝑏 ∗ 1 + (𝑤1𝑥1 + 𝑤2𝑥2 + ⋯ + 𝑤𝑛𝑥𝑛),     
+ 
+ 
+Figura 5.4 Neurona Artificial, modelo abstracto de una neurona natural, con sesgo 𝑏.  
+ 
+En términos de aprendizaje de máquina, vamos a denominar el vector 𝑋, como el vector de rasgos 
+o características (features) y el vector 𝑊 como el vector de pesos. 
+ 
+𝑊 = [
+𝑏
+𝑤1
+⋮𝑤𝑛
+]  𝑋 = [
+1
+𝑥1
+⋮𝑥𝑛
+] 
+ 
+Dado, que la respuesta del axón es una especie de onda, para acercarnos a esta respuesta, definimos  
+la función  de activación 𝑔(𝑍), que es la respuesta que realmente nos interesa. Si se observa la 
+ecuación (2), es la ecuación de una recta en un espacio n -dimensional. La función de activación es 
+la que introduce complejidad a la red.  
+ 
+Veamos la función de activación de la figura 5.5, es la función paso unitario, que es una combinación 
+lineal de los valores de entrada X y los pesos W. Donde Z si es mayor que un umbral determinado, 
+toma el valor 1, sino toma el valor 0.
+### pagina 5
+ 
+Figura 5.5 Función paso unitario 
+ 
+Sin embargo, esta función  tiene varios defectos, en primer lugar, en la naturaleza nunca se 
+presentan cambios en tiempo cero y además es una función que no es derivable, algo bien 
+importante para el algoritmo de aprendiza je. De manera que  se utiliza n varias funciones de 
+activación que son derivables, la más común es la función de activación sigmoidal, figura 5.6.  
+  
+Figura 5.6 Función sigmoide 
+ 
+La función de activación sigmoidal tiene la ventaja adicional que:  𝜎′ =  𝜎(1 −  𝜎). Es importante 
+recordar que la introducción de la función de activación le da la complejidad a la red neuronal, sin 
+la función de activación, las redes neuronales son simplemente combinaciones lineales.  
+ 
+Aunque la función de activación más usada y más popular ha sido la función sigmoide, la función de 
+activación ReLU (Rectified LinearActivation), se usa en RNAs profundas, porque es más eficiente en 
+el proceso de entrenamiento  
+ 
+ 
+Figura 5.7 Función ReLu 
+ 
+5.3 Ejemplos de clasificación.  
+Usando la neurona artificial, con la función de activación sigmoidal.  
+Veamos la compuerta AND, figura 5.7.
+### pagina 6
+Con los pesos 30, 20 y 20, se calcula la salida 𝑔(𝑍), 
+ 
+ 
+ 
+ 
+X1 X2 b w1 w2 Z g(Z) 
+0 0 -30 20 20 -30 ~ 0 
+0 1 -30 20 20 -10 ~ 0 
+1 0 -30 20 20 -10 ~ 0 
+1 1 -30 20 20 10 ~ 1 
+ 
+    
+ 
+ 
+Figura 5.7 Red para clasificar una compuerta AND, topología, tabla con vector de pesos. 
+ 
+Ahora la compuerta OR, figura 5.8. 
+Ahora con los pesos -10, 20 y 20, se calcula 𝑔(𝑍), 
+ 
+ 
+ 
+X1 X2 b w1 w2 Z g(Z) 
+0 0 -10 20 20 -10 ~ 0 
+0 1 -10 20 20 10 ~ 1 
+1 0 -10 20 20 10 ~ 1 
+1 1 -10 20 20 30 ~ 1 
+ 
+    
+     
+Figura 5.8 Red para clasificar una compuerta OR, topología, tabla con vector de pesos. 
+ 
+Como se puede observar ambas redes tienen el mismo número de entradas, solo cambia el peso en 
+la primera entrada, aunque el primer o clasifica una compuerta AND, el segundo clasifica una
+### pagina 7
+compuerta OR. El cambio de peso en el vector de sesgo, cambia la función de la red neuronal. ¡Los 
+pesos definen el objetivo de la red neuronal! 
+  
+Veamos ahora la compuerta NOT, figura 5.9. 𝑍 =  (10 − 20𝑥1) y luego se calcula 𝑔(𝑍) 
+ 
+ 
+ 
+ 
+X1 X2 b w Z g(Z) 
+0 0 10 -20 10 ~ 1 
+0 1 10 -20 -10 ~ 0 
+ 
+Figura 5.9 Red para clasificar una compuerta NOT, topología, tabla con vector de pesos 
+ 
+Aquí tenemos una clasificación binaria, 𝑌 =  [1, 0]  
+ 
+Ahora, con base en las conformaciones anteriores vamos a armar la red para la clasificación de una 
+compuerta NAND. 
+ 
+𝑍1  =  (−30 +  20𝑥1 +  20𝑥2) , luego se calcula 𝐴1= 𝑔(𝑍1); luego 𝑍2  =  (10𝑎1 −  20𝑎2) y 𝐴2 = 
+𝑔(𝑍2); 
+ 
+                                 𝑋                                 𝑍1     𝐴1                             𝑍2  𝐴2 
+ 
+ 
+X1 X2        W1    Z1 A1 W2    Z2 g(Z)  
+0 0 -30 -30 ~0 10 10 ~1 
+0 1 20 -10 ~0 -20 -10 ~0 
+1 0 20 -10 ~0  -10 ~0  
+1 1    10 ~1  -30 ~0  
+ 
+Figura 5.10 Red para clasificar una compuerta NAND, topología y tabla con matriz de pesos
+### pagina 8
+ 
+Ahora tenemos dos capas. En la primera capa obtenemos un valor que hemos llamado 𝑍1 que se 
+calcula con el vector de pesos 𝑊1 y luego aplicando la función sigmoide obtenemos como 𝐴1 
+resultado intermedio. En la capa 2, obtenemos un valor que hemos llamado  𝑍2 que se calcula con 
+el vector de pesos 𝑊2 y luego aplicando la función sigmoide obtenemos el resultado 𝑔(𝑍2) que 
+corresponde a la compuerta NAND. Como podemos observar ahora tenemos una matriz de pesos  
+ 𝑊.  
+ 
+Podemos hacer lo mismo para obtener la compuerta NOR, uniendo las conformaciones OR y NOT 
+como se hizo en el caso anterior. Pero también podemos unir las redes de clasificación de las 
+compuertas AND y NOR, que nos da la siguiente topología, figura 5.1 
+ 
+ 
+                               Capa 0                Capa 1          Capa 2 
+ 
+Figura 5.11. Red para clasificar las compuertas AND y OR. 
+ 
+𝑧1
+1 = (−30 + 20𝑥1 + 20𝑥2)  y 𝑧2
+1 = (−10 + 20𝑥1 + 20𝑥2); calculamos 𝑎1
+1 = 𝑔(𝑧1
+1) y 𝑎2
+1 = 𝑔(𝑧2
+1), 
+que son la salida de la capa 1. Para la capa 2, calculamos 𝑧1
+2 = (10 − 20𝑎1
+1) y 𝑧2
+2 = (10 + 20𝑎2
+1) y 
+finalmente obtenemos 𝑦1 = 𝑎1
+2  = 𝑔(𝑧1
+2) y 𝑦2 = 𝑎2
+2  = 𝑔(𝑧2
+2) 
+ 
+Los superíndices nos indican la capa, así, el vector 𝑍1 =  [𝑧1
+1
+𝑧2
+1], el vector 𝐴1 =  [𝑎1
+1
+𝑎2
+1], que son las 
+salidas de la capa 1. La matriz de pesos de la capa 1 es 𝑊1 =  [𝑤1
+1 𝑤2
+1] , 𝐵1 =  [𝑏1
+1 𝑏2
+1] y 𝑊2 =
+ [𝑤1
+2 𝑤2
+2], 𝐵2 =  [𝑏1
+2 𝑏2
+2]: 
+ 
+  𝑊1  =  
+𝑤1
+1 𝑤2
+1
+20 20
+20 20
+     𝐵1  =   −30 20       𝑊2  = 𝑤1
+2 𝑤2
+2
+−20 −20      𝐵2  =  10 −10 
+ 
+En este caso tenemos una multi -clasificación, es decir 𝑔(𝑍2) es un vector. E n términos de 
+clasificación. Si  𝑘 es el número de clases, 𝑘 =  2, en este caso tenemos dos clases NAND y NOR.
+### pagina 9
+ 
+Si por ejemplo estamos clasificando números arábigos, tendríamos 𝑘 =  10. 
+ 
+Las redes neuronales artificiales están diseñadas para procesar información y aprender patrones 
+complejos a partir de los datos.  Sus funciones principales son la clasificación y la predicción.  
+ 
+Clasificación 
+Se puede definir de manera general la clasificación como el agrupamiento de cosas que comparten 
+ciertas características y cualidades. Por ejemplo, clasificar formas geométricas, números escritos a 
+mano, o simplemente huevos. En IA, la clasificación es el problema de identificar a que conjunto de 
+categorías pertenece una nueva observación, con base en un proceso computacional en el que se 
+utiliza un modelo algorítmico y en el que se ha tenido un conjunto de datos de entrenamiento que 
+contiene observaciones cuya membresía de categorías se conoce.   
+ 
+Predicción 
+Con base en datos históricos, datasets, las redes neuronales, pueden predecir o estimar futuros 
+valores numéricos en un determinado horizonte de tiempo. Es importante ser conscientes de que 
+siempre estas predicciones tienen una incertidumbre inherente. 
+ 
+ 
+5.4 Aprendizaje Supervisado  
+Uno de los procesos más importantes en RNA es el proceso de aprendizaje. El aprendizaje puede 
+hacerse de manera supervisada o no supervisada. En el capítulo siguien te volveremos sobre este 
+tema. En el aprendizaje o entrenamiento supervisado, se proveen tanto las entradas , las 
+características,  como las salidas , o rótulos, correspondientes a esas entradas . Un atributo, o 
+característica, es un aspecto específico de un objeto, o del rótulo. En ML se supone que el conjunto 
+de características describe un objeto.  
+ 
+La red entonces procesa las entradas y compara sus salidas resultantes contra las salidas deseadas  
+o rótulos . En la mayoría de los casos no corresponden y se deb e calcular su diferencia o error. 
+Entonces ahora se busca ajustar los pesos que controlan la red para disminuir el error, hasta que de 
+acuerdo con un determinado criterio se considera que el error es aceptable.  
+ 
+Generalización del aprendizaje 
+Se busca  que con la red neuronal se pueda, por ejemplo, predecir apropiadamente el costo de 
+cualquier inmueble, es decir la red debe generalizar el concepto para cualquier tipo de inmueble. 
+Se pueden presentar dos problemas, que el modelo sea demasiado general o q ue sea demasiado 
+específico. Esto se debe tener en cuenta al entrenar la red.
+### pagina 10
+ 
+ 
+Figura 5.12. En la figura de la izquierda se tiene sub -entrenamiento, también conocido como 
+underfitting; en el centro, el entrenamiento adecuado, y en la figu ra de la derecha se tiene sobre-
+entrenamiento o overfitting. 
+ 
+Para solucionar este problema, el dataset se divide en tres conjuntos, el conjunto de entrenamiento, 
+generalmente del 80% del dataset; el conjunto de prueba, con el que se busca obtener una 
+estimación del comportamiento de la red en el mundo real; y el conjunto de validación, que nos 
+permite una evaluación de la generalización del modelo. 
+ 
+ 
+Propagación  
+Las redes que hemos visto hasta ahora se conocen como feedforward, cuya característica es que el 
+proceso va desde la capa de entrada hasta capa de salida. No hay retroalimentación hacia atrás. Es 
+la red más simple y utilizada . Entonces, v amos a generalizar una red feed -forward, con su 
+nomenclatura, con base en la figura 5.13. 
+ 
+                                     𝑿         𝒁𝟏   𝑨𝟏                       𝒁𝟐    𝑨𝟐             𝒁𝟑   𝑨𝟑 
+ 
+ 
+Figura 5.13. Red de tres capas para mostrar la propagación, desde el vector de entrada. 
+ 
+Vamos a describir cómo se propagan los datos en la red desde la entrada. 
+ 
+Capa 1: 
+𝑧1
+1 =  𝑏1
+1 + (𝑤11
+1 𝑥1 + 𝑤21
+1 𝑥2 + 𝑤31
+1 𝑥3),    𝑎1
+1 = 𝑔 (𝑧1
+1)
+### pagina 11
+ 
+𝑧2
+1 =  𝑏2
+1 + (𝑤12
+1 𝑥1 + 𝑤22
+1 𝑥2 + 𝑤32
+1 𝑥3),    𝑎2
+1 = 𝑔 (𝑧2
+1) 
+ 
+𝑧3
+1 =  𝑏3
+1 + (𝑤13
+1 𝑥1 + 𝑤23
+1 𝑥2 + 𝑤33
+1 𝑥3),    𝑎3
+1 = 𝑔 (𝑧3
+1) 
+ 
+ 
+con 
+     𝑊𝑇
+1 = 𝐵1 + 𝑊1 =  
+𝑏1
+1
+𝑏2
+1
+𝑏3
+1
+  +   
+𝑤11
+1 𝑤21
+1 𝑤31
+1
+𝑤12
+1 𝑤22
+1 𝑤32
+1
+𝑤13
+1 𝑤23
+1 𝑤33
+1
+ 
+ 
+Matriz de pesos de la capa 1 
+ 
+Matricialmente, 𝑍(1)  =  𝐵1 + (𝑊(1)𝑇)𝑋  y  𝐴(1) = 𝑔(𝑍(1)); para generalizar podemos decir que 
+𝐴(0) = 𝑋, y así la ecuación matricial para la capa 1 sería 𝑍(1)  =  𝐵1 + (𝑊(1)𝑇)𝐴(0). 
+ 
+Capa 2:  
+𝑧1
+2 =  𝑏1
+2 + (𝑤11
+2 𝑎1
+1 + 𝑤21
+2 𝑎2
+1 + 𝑤31
+2 𝑎3
+1),    𝑎1
+2 = 𝑔 (𝑧1
+2) 
+ 
+𝑧2
+2 =  𝑏2
+2 + (𝑤12
+2 𝑎1
+1 + 𝑤22
+2 𝑎2
+1 + 𝑤32
+2 𝑎3
+1),    𝑎2
+2 = 𝑔 (𝑧2
+2) 
+ 
+𝑧3
+2 =  𝑏3
+2 + (𝑤13
+2 𝑎1
+1 + 𝑤23
+2 𝑎2
+1 + 𝑤33
+2 𝑎3
+1),    𝑎3
+2 = 𝑔 (𝑧3
+2) 
+ 
+con 
+     𝑊𝑇
+2 = 𝐵2 + 𝑊2 =  
+𝑏1
+2
+𝑏2
+2
+𝑏3
+2
+  +   
+𝑤11
+2 𝑤21
+2 𝑤31
+2
+𝑤12
+2 𝑤22
+2 𝑤32
+2
+𝑤13
+2 𝑤23
+2 𝑤33
+2
+ 
+ 
+ 
+Matriz de pesos de la capa 2. 
+ 
+Matricialmente 𝑍(2)  =  𝐵2 + (𝑊(2)𝑇)𝐴(1) 
+ 
+Capa 3: 
+𝑧1
+3 =  𝑏1
+3 + (𝑤11
+3 𝑎1
+2 + 𝑤21
+3 𝑎2
+2 + 𝑤31
+3 𝑎3
+2),    𝑎1
+3 = 𝑔 (𝑧1
+3) 
+ 
+𝑧2
+3 =  𝑏2
+3 + (𝑤12
+3 𝑎1
+2 + 𝑤22
+3 𝑎2
+2 + 𝑤32
+3 𝑎3
+2),    𝑎2
+3 = 𝑔 (𝑧2
+3) 
+ 
+𝑧3
+3 =  𝑏3
+3 + (𝑤13
+3 𝑎1
+2 + 𝑤23
+3 𝑎2
+2 + 𝑤33
+3 𝑎3
+2),    𝑎3
+3 = 𝑔 (𝑧3
+3)
+### pagina 12
+ 
+𝑊𝑇
+3 = 𝐵3 + 𝑊3 =  
+𝑏1
+3
+𝑏2
+3
+𝑏3
+3
+  +   
+𝑤11
+3 𝑤21
+3 𝑤31
+3
+𝑤12
+3 𝑤22
+3 𝑤32
+3
+𝑤13
+3 𝑤23
+3 𝑤33
+3
+ 
+ 
+Matriz de pesos de la capa 3 
+ 
+Matricialmente  
+𝑍(3)  =  𝐵3 + (𝑊(3)𝑇)𝐴(2) y 𝐴(3) = 𝑔(𝑍(3)). Generalizando, para cualquier capa oculta 𝑖, se tiene 
+que: 
+𝑍(𝑖)  =  𝐵(𝑖) + (𝑊(𝑖)𝑇)𝐴(𝑖−1)  y  𝐴(𝑖) = 𝑔(𝑍(𝑖)).  
+ 
+Al analizar esta ecuación, encontramos que se pasa de una capa a la otra con la ecuación de la 
+izquierda y el vector de salida 𝐴(𝑖) se encuentra aplicando la función de activación a 𝑍(𝑖). 
+ 
+Volviendo a la figura 5.11, como la capa 3 es la última capa de la red, los 𝐴(3) son la respuesta de la 
+red que notamos como 𝐻𝑤(𝑋). En otras palabras, el resultado de la propagación del vector 𝑋 a 
+través de la red, es el vector 𝐻𝑤(𝑋). 
+ 
+Aprendizaje supervisado 
+Con el fin de encontrar los pesos apropiados para que la red responda apropiadamente a los 
+patrones que queremos, debemos trabajar en el ajuste de los pesos. Para entrenar la red en esos 
+patrones hacemos aprendizaje supervisado , proveyendo, para este proce so un conjunto de 
+entrenamiento: (𝑋(1),  𝑌(1)), (𝑋(2),  𝑌(2)), … , (𝑋(𝑚),  𝑌(𝑚)). Donde los vectores 𝑋 son las 
+características (features) o patrones de entrada y los vectores 𝑌 son los patrones que debe 
+reconocer o las clasificaciones que debe producir la red. 
+ 
+Analicemos un poco el con junto de entrenamiento, por ejemplo el conjunto de entrenamiento de 
+MNIST que consiste en dígitos escritos a mano de 10.000 ejemplos. Los dígitos son imágenes de un 
+tamaño normalizado de 28 X 28 pixeles, 784 pixeles, en escala de grises, con un rótulo que dice que 
+número es, de manera que los valores de los rótulos son de 0 a 9.  De manera que  en el par  
+(𝑋(𝑚),  𝑌(𝑚)),  el 𝑋(𝑚) corresponde a un vector de 748 valores y  𝑌(𝑚)corresponde a un rótulo entre 
+0 y 9. Así, en la figura 5.15, los valores en el recuadro son los corresponden a los 784 valores de los 
+pixeles el número escrito a mano y la flecha me indica su rótulo
+### pagina 13
+ 
+ 
+Figura 5.14. El número 3 escrito a mano, normalizado como una imagen de 28 x 28, 784 pixeles, y 
+su rótulo correspondiente, 3.  
+ 
+Se trata entonces de darle como entrada a una red neuronal los 784 pixeles y un rótulo; pero 10.000 
+veces, para que se obtenga n los pesos que permitan clasificar cualquier número escrito a mano , 
+normalizado a 28 X 28 pixeles, ver figura 5.15.  
+  
+ 
+ 
+Figura 5.15. En la figura aparecen los números escritos a mano como imágenes de 28 X 28, 784 
+pixeles, valores de 𝑋, aparte vienen los valores de los rótulos 1, 2, 6, 4, 8, 0, 1, 4, 0; que corresponden 
+a los valores de 𝑌, o rótulos. 
+ 
+5.5 Algoritmo de aprendizaje y función de pérdida 
+La topología de la red depende del número de características (features) del vector de 
+entrada, del número de salidas en la capa de salida, que corresponde a las clasificaciones
+### pagina 14
+que hace la red o del resultado que se espera y del número de capas ocultas, que 
+generalmente es de dos o tres capas. Además, todas las neuronas de la capa 𝑖 se conectan 
+con todas las neuronas de la capa 𝑖 + 1; grafos completamente conectados 
+ 
+Inicialmente se asignan valores aleatorios entre [0, 1] a los pesos de la red, aunque algunos 
+autores recomiendan valores menores de 0.5. Una vez se hace la propagación a través de la red 
+de los vectores 𝑋,  con esos valores de pesos, se obtiene el vector de salida  𝑌. La diferencia con el 
+rotulo de entrenamiento 𝑌𝑟, es  𝑒 =  |𝑌𝑟 −  𝑌|, es el error de clasificación de la red  𝑒 =  [
+𝑒1
+𝑒2
+𝑒3
+] 
+El proceso de entrenamiento o aprendizaje consiste en hacer que ese error sea menor que un Ɛ 
+definido. También se define la función de pérdida como el error promedio 𝐸 como: 
+𝐸 = 1
+2 (𝑒)2  =  1
+2 (𝑒)𝑇𝑒 
+La idea es minimizar el error haciendo que se afecten  todos los pesos en cada  una de las 
+capas de la red. Como solo se conoce el error en la última capa, se comienza minimizando 
+el error en esa capa , ajustando el vector de sesgo y la matriz de peso de  esa capa. Y luego 
+se sigue hacia las capas internas, hasta llegar a la capa de entrada. Esto es lo que se conoce 
+como algoritmo de retropropagación o Backpropagation. 
+ 
+Backpropagation. 
+Tercera capa. Dado que tenemos 3 capas, se minimiza el error con respeto a los pesos en 
+la capa 3, en este caso la capa de salida, ver figura 5.16. Siguiendo la regla de la cadena se 
+tiene: 
+ 
+ 
+Figura 5.16, Con base en el error promedio 𝐸, se ajustan lo valores de la matriz de pesos de 
+la última capa.  
+ 
+De manera que se busca encontrar el cambio en el error promedio 𝐸 con base en el cambio 
+en la matriz de pesos 𝑊𝑇
+3 : 
+𝜕𝐸
+𝜕𝑊𝑇
+3 . Pero lo que conocemos es 𝑍3, de manera que hacemos: 
+𝜕𝐸
+𝜕𝑊𝑇
+3 = 𝜕𝐸
+𝜕𝑍3  𝜕𝑍3
+𝜕𝑊𝑇
+3 
+O También:
+### pagina 15
+𝜕𝐸
+𝜕𝑊𝑇
+3 =
+𝜕𝑌
+𝜕𝑍3  
+𝜕𝑒
+𝜕𝑌   
+𝜕𝐸
+𝜕𝑒  
+𝜕𝑍3
+𝜕𝑊𝑇
+3 , recordando que  𝐴3 =  𝑌 =  𝑔(𝑍3).  𝑌 =σ(𝑍3) 
+ 
+Es importante recordar que  𝜎′ =  𝜎(1 −  𝜎) 
+ 
+Así,  
+𝜕𝑌𝑖
+3
+𝜕𝑍𝑗
+3 =  {1, 𝑠𝑖 𝑖 = 𝑗
+0, 𝑠𝑖 𝑖 ≠ 𝑗    o  
+𝜕𝑌3
+𝜕𝑍3 =  [
+𝜎′(𝑍1
+3) 0 0
+0 𝜎′(𝑍2
+3) 0
+0 0 𝜎′(𝑍3
+3)
+]  y notando 
+ 
+ Nos queda que:       
+𝜕𝑌
+𝜕𝑍3  = 𝑑𝑖𝑎𝑔 (𝜎′(𝑍3)).  Recordando 𝑒 =  |𝑌𝑟 − 𝑌| 
+ 
+Se tiene, 
+𝜕𝑒
+𝜕𝑌 =  
+𝜕𝑒𝑖
+𝜕𝑌𝑗
+= {−1, 𝑠𝑖 𝑖 = 𝑗
+0, 𝑠𝑖 𝑖 ≠ 𝑗       o   𝜕𝑒𝑖
+𝜕𝑌𝑗
+= − [
+1 0 0
+0 1 0
+0 0 1)
+] = - 1 
+1 
+Ahora, 
+𝜕𝐸
+𝜕𝑒 =  
+𝜕
+𝜕𝑒 (
+1
+2  (𝑒)𝑇𝑒) = 𝑒. Recordando 𝑍(3)  =  𝐵(3) + (𝑊(3)𝑇)𝐴(2) 
+ 
+ 
+Ahora, 
+𝜕𝑍3
+𝜕𝑊𝑇
+3 =  
+𝜕
+𝜕𝑊𝑇
+3 (𝐵(3) + (𝑊(3)𝑇)𝐴(2))  0,  
+𝜕𝑍3
+𝜕𝑊𝑇
+3 =  1 + 𝐴(2)𝑇 
+ 
+Reuniendo todos los términos:   
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+3 = 𝜕𝑌3
+𝜕𝑍3  𝜕𝑒
+𝜕𝑌3   𝜕𝐸
+𝜕𝑒  𝜕𝑍3
+𝜕𝑊𝑇
+3 
+𝜕𝐸
+𝜕𝑊𝑇
+3 = 𝑑𝑖𝑎𝑔(𝜎′(𝑍3)) − 1 𝑒 (1 +  𝐴(2)𝑇) 
+𝜕𝐸
+𝜕𝑊𝑇
+3 = −𝑑𝑖𝑎𝑔(𝜎′(𝑍3))  𝑒 (1 +  𝐴(2)𝑇) 
+ 
+Haciendo  𝛿3= 𝑑𝑖𝑎𝑔(𝜎′(𝑍3)) 𝑒, entonces  
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+3 =  −𝛿3(1 +  𝐴(2)𝑇)   o 
+𝜕𝐸
+𝜕𝑊𝑇
+3 =  −𝛿3 −  𝛿3𝐴(2)𝑇    
+donde  
+𝜕𝐸
+𝜕𝑊𝑇
+3 =  
+𝜕𝐸
+𝜕𝐵3 +
+𝜕𝐸
+𝜕𝑊3 
+ 
+con  
+𝜕𝐸
+𝜕𝐵3 = −𝛿3 y     
+𝜕𝐸
+𝜕𝑊3 = − 𝛿3𝐴(2)𝑇
+### pagina 16
+ 
+De manera que con estos valores ajustamos lo pesos de la última capa. 
+ 
+Segunda capa. Ahora se minimiza el error promedio 𝐸 con respeto a los pesos de la capa 
+2, ver figura 5.17. Siguiendo la regla de la cadena se tiene:  
+ 
+Figura 5.17. Con base en el error promedio 𝐸, se ajustan lo valores de la matriz de pesos de 
+la segunda capa.  
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+2 = 𝜕𝐸
+𝜕𝑍2  𝜕𝑍2
+𝜕𝑊𝑇
+2 
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+2 = 𝜕𝐴2
+𝜕𝑍2  𝜕𝑍3
+𝜕𝐴2   𝜕𝐸
+𝜕𝑍3  𝜕𝑍2
+𝜕𝑊𝑇
+2 
+ 
+Ahora,  
+𝜕𝐴𝑖
+2
+𝜕𝑍𝑗
+2 =  {1, 𝑠𝑖 𝑖 = 𝑗
+0, 𝑠𝑖 𝑖 ≠ 𝑗    o  
+𝜕𝐴2
+𝜕𝑍2 =  [
+𝜎′(𝑍1
+2) 0 0
+0 𝜎′(𝑍2
+2) 0
+0 0 𝜎′(𝑍3
+2)
+] 
+ 
+𝜕𝐴2
+𝜕𝑍2 = 𝑑𝑖𝑎𝑔(𝜎′(𝑍2))  
+ 
+Ahora, 
+𝜕𝑍3
+𝜕𝐴2 = 
+𝜕
+𝜕𝑊𝑇
+3 (𝐵(3) + (𝑊(3)𝑇)𝐴(2)) O,   
+𝜕𝑍3
+𝜕𝐴2  =  𝑊(3)𝑇 
+ 
+Ahora, para calcular  
+𝜕𝐸
+𝜕𝑍3 Teníamos que: 𝐸 =
+1
+2  (𝑒)2 o  𝐸 =
+1
+2  (𝑌𝑟 −  𝑌)2   o 
+ 𝐸 =
+1
+2  (𝑌𝑟 −  𝑔(𝑍(3)))2  ahora, derivando con respecto a 𝑍(3), se tiene: 
+ 
+𝜕𝐸
+𝜕𝑍3 = (𝑌𝑟 −  𝑔(𝑍(3))) − 𝑑𝑖𝑎𝑔(𝜎′(𝑍3)), pero 𝑒 =  |𝑌𝑟  − 𝑔 (𝑍(3)) |, entonces 
+reacomodando 
+ 
+𝜕𝐸
+𝜕𝑍3 = −𝑑𝑖𝑎𝑔(𝜎′(𝑍3)) 𝑒, y se había definido 𝛿3= 𝑑𝑖𝑎𝑔(𝜎′(𝑍3)) 𝑒
+### pagina 17
+𝜕𝐸
+𝜕𝑍3 = − 𝛿3 
+ 
+ 
+Ahora,  
+𝜕𝑍2
+𝜕𝑊𝑇
+2 =  
+𝜕
+𝜕𝑊𝑇
+2 (𝐵(2) + 𝑊(2)𝑇𝐴1)  0,  
+𝜕𝑍2
+𝜕𝑊𝑇
+2 = 1 + 𝐴(1)𝑇   
+ 
+Reuniendo los términos 
+𝜕𝐸
+𝜕𝑊𝑇
+2 = −𝑑𝑖𝑎𝑔(𝜎′(𝑍2)) 𝑊(3)𝑇  𝛿3 (1 + 𝐴(1)𝑇) 
+ 
+Haciendo  𝛿2= 𝑑𝑖𝑎𝑔(𝜎′(𝑍2)) 𝑊(3)𝑇 𝛿3, entonces 
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+2 = −𝛿2 (1 + 𝐴(1)𝑇) o 
+𝜕𝐸
+𝜕𝑊𝑇
+2 = −𝛿2 − 𝛿2𝐴(1)𝑇 
+Donde  
+𝜕𝐸
+𝜕𝐵2 = −𝛿2 y     
+𝜕𝐸
+𝜕𝑊2 = −𝛿2𝐴(2)𝑇 
+𝜕𝐸
+𝜕𝑊𝑇
+3 =  𝜕𝐸
+𝜕𝐵3  + 𝜕𝐸
+𝜕𝑊3 
+ 
+ 
+Primera capa. Ahora se minimiza el error promedio 𝐸 con respeto a los pesos de la capa 1, 
+ver figura 5.18. Siguiendo la regla de la cadena se tiene:  
+ 
+Figura 5.18. Con base en el error promedio 𝐸, se ajustan lo valores de la matriz de pesos de 
+la primera capa.  
+𝜕𝐸
+𝜕𝑊𝑇
+1 = 𝜕𝐸
+𝜕𝑍1  𝜕𝑍1
+𝜕𝑊𝑇
+1 
+𝜕𝐸
+𝜕𝑊𝑇
+1 = 𝜕𝐴1
+𝜕𝑍1  𝜕𝑍2
+𝜕𝐴1   𝜕𝐸
+𝜕𝑍2  𝜕𝑍1
+𝜕𝑊𝑇
+1 
+ 
+Ahora,  
+𝜕𝐴𝑖
+1
+𝜕𝑍𝑗
+1 =  {1, 𝑠𝑖 𝑖 = 𝑗
+0, 𝑠𝑖 𝑖 ≠ 𝑗    o  
+𝜕𝐴𝑖
+1
+𝜕𝑍𝑗
+1 =   [
+𝜎′(𝑍1
+1) 0 0
+0 𝜎′(𝑍1
+1) 0
+0 0 𝜎′(𝑍1
+1)
+]
+### pagina 18
+𝜕𝐴1
+𝜕𝑍1 = 𝑑𝑖𝑎𝑔(𝜎′(𝑍1))  
+ 
+Ahora, 
+𝜕𝑍2
+𝜕𝐴1= 
+𝜕
+𝜕𝐴1 (𝐵(2) + 𝑊(2)𝑇𝐴1)  0  
+𝜕𝑍2
+𝜕𝐴1   = 𝑊(2)𝑇 
+ 
+Ahora, para calcular 
+𝜕𝐸
+𝜕𝑍2   Teníamos que: 𝐸 =
+1
+2  (𝑒)2 o  𝐸 =
+1
+2  (𝑌 −  𝑌𝑐)2   o 
+ 𝐸 =
+1
+2  (𝑌 −  𝑔(𝑍(3)))
+2
+, reemplazando  𝑍(3)  por 𝐵3 + (𝑊(3)𝑇)𝐴(2) se tiene: 
+𝐸 =
+1
+2  (𝑌 −  𝑔(𝐵3 + (𝑊(3)𝑇)𝐴(2)))
+2
+, pero 𝐴(2) = 𝑔(𝑍(2)); reemplazando: 
+𝐸 =
+1
+2  (𝑌 −  𝑔(𝐵3 + (𝑊(3)𝑇)𝑔(𝑍(2))))
+2
+ y derivando 
+ 
+𝜕𝐸
+𝜕𝑍2 =  (𝑌 −  𝑔(𝑍(3))) (−𝑑𝑖𝑎𝑔 (𝜎′ (𝑍3))) 𝑊(3)𝑇𝑑𝑖𝑎𝑔 (𝜎′ (𝑍2)) 
+𝜕𝐸
+𝜕𝑍2 =  −𝑑𝑖𝑎𝑔 (𝜎′ (𝑍3))  𝑒 𝑊(3)𝑇 𝑑𝑖𝑎𝑔 (𝜎′ (𝑍2))  pero 𝛿3= 𝑑𝑖𝑎𝑔(𝜎′(𝑍3)) 𝑒 
+𝜕𝐸
+𝜕𝑍2 =   𝛿3 𝑊(3)𝑇 𝑑𝑖𝑎𝑔 (𝜎′ (𝑍2)) y 𝛿2= 𝑑𝑖𝑎𝑔(𝜎′(𝑍2)) 𝑊(3)𝑇 𝛿3 
+𝜕𝐸
+𝜕𝑍2 =  𝛿2 
+Ahora, 
+𝜕𝑍2
+𝜕𝐴1= 
+𝜕
+𝜕𝐴1 (𝐵(2) + 𝑊(2)𝑇𝐴1), 
+  
+𝜕𝑍1
+𝜕𝑊𝑇
+1 =  1 + 𝐴(0)𝑇   
+ 
+𝜕𝐸
+𝜕𝑊𝑇
+1 = −𝑑𝑖𝑎𝑔(𝜎′(𝑍1))  𝑊(2)𝑇  𝛿2 (1 + 𝐴(0)𝑇) 
+ 
+Haciendo  𝛿1= 𝑑𝑖𝑎𝑔(𝜎′(𝑍1))  𝑊(2)𝑇𝛿2 , entonces 
+  
+𝜕𝐸
+𝜕𝑊𝑇
+1 = −𝛿1 (1 + 𝐴(0)𝑇) 
+ 
+Donde  
+𝜕𝐸
+𝜕𝐵1 = −𝛿1   y     
+𝜕𝐸
+𝜕𝑊1 = −𝛿1𝐴(1)𝑇 
+ 
+En este caso la operación + nos indica se debe considerar una operación con dos componentes, uno 
+que es la actualización de los pesos que representan el umbral de manera separada y el otro que 
+corresponde a la actualización de la matriz de pesos.  
+ 
+Actualización de los pesos 
+Los pesos se actualizan gradualmente usando el descenso del gradiente. Con Ƞ como la 
+tasa de aprendizaje.
+### pagina 19
+Generalizando, para cualquier capa interna: 
+ 
+                                  𝛿𝑘= 𝑑𝑖𝑎𝑔(𝜎′(𝑍𝑘))  𝑊(𝑘+1)𝑇𝛿𝑘+1 
+ 
+∆𝑊(𝐾+1) =  −Ƞ 𝛿𝑘 −  Ƞ 𝛿𝑘 𝐴(𝑘−1)𝑇 
+𝑊(𝐾+1)= 𝑊(𝐾) + ∆𝑊(𝐾+1) 
+ 
+En las fórmulas anteriores, la variable Ƞ se conoce como tasa de aprendizaje.  Es un valor 
+que se toma entre 0 y 1. Si por ejemplo se toma Ƞ = 0.2, quiere decir que solamente se 
+tiene en cuenta el 20% del error para la actualización de los pesos , se considera como un 
+hiperparámetro de configuración.  Los pesos también se consideran hiperparámetros.  
+ 
+Resumiendo, en el aprendizaje por Backpropagation se calcula el error  en la salida. Luego 
+se pasa el error hacia atrás y se pondera a lo largo de cada capa , permitiendo calcular los 
+cambios que se deben realizar en la matriz W de pesos y el vector B de sesgos, en cada capa. 
+Cuando se llega a una unidad, se propaga, se multiplica el error propag ado hacia atrás por 
+la derivada de la unidad. Es un algoritmo recursivo. 
+ 
+El algoritmo de retropropagación fue descrito inicialmente por P. Werbos en 1974, pero G. 
+Hinton y su grupo, mostraron la eficiencia en el entrenamiento de redes multicapa en los 
+80s. 
+ 
+ 
+Figura 5.17. Cómo va evolucionando la función de pérdida, con 15 épocas.
+### pagina 20
+ 
+El dataset en el aprendizaje supervisado, incluye la respuesta correcta 𝑌𝑟 o valores rotulados, para 
+cada ejemplo 𝑋, el par (𝑋, 𝑌𝑟). 
+ 
+Notación 
+m = número de ejemplos de entrenamiento. 
+X = variable de entrada, es un vector con todas las características (features) del ejemplo. 
+n = número de características (features) de la variable de entrada. 
+Y = variable de salida, valores objetivo (target), o valores rotulados. 
+ 
+ 
+En las diferentes heurísticas de ML, se define una función de costo 𝐽 que es la diferencia 
+entre la hipótesis que produce un modelo ℎ𝑤(𝑋)  y el valor real Y en el conjunto de 
+aprendizaje:   
+𝐽(𝑊) = 1
+2𝑚 (∑
+ 
+ (ℎ𝑤(𝑋) − 𝑌)2) 
+𝑚
+𝑖=1
+ 
+ 
+Donde  
+1
+2 (ℎ𝑤(𝑋) − 𝑌)2, es el error cuadrático que se ha trabajado, para el conjunto de 
+aprendizaje. Cuando se tiene en el conjunto de aprendizaje 𝑚 ejemplos, lo que nos dice la 
+ecuación es que se toma el promedio de todos los errores al entrenar la red con todos los 
+𝑚 ejemplos del conjunto de entrenamiento. 
+ 
+La función de costo también se conoce como función de pérdida y tal vez es el nombre que 
+más se utiliza. Para ML hay varias funciones de pérdida. 
+ 
+ 
+5.6 Ejemplos  
+Ejemplo 1. Suponga que tiene la siguiente red neuronal:
+### pagina 21
+ 
+ 
+Vamos a ver el programa que se está en NoteBook de Jupyter. 
+ 
+ 
+Se define la topología de la red, los valores de los sesgos y pesos, de manera arbitraria; y los 
+vectores de propagación de la red, como numéricos. 
+ 
+ 
+Se define la función de propagación, su parámetro es solo el vector de datos de entrada Xo, y hace 
+la propagación a través de la red, con base en los vectores de sesgo y las matrices de pesos. 
+Encuentra los vectores de resultados en cada capa: Z1, A1, Z2 y A2. Luego viene la función sigma. Y 
+de la derivada de sigma, para el algoritmo de Backpropagation.
+### pagina 22
+ 
+X es el vector de entrada a la red o vector de características, con los valores 0.05 Y 0.10. Luego el 
+vector Yr, que es el resultado que queremos que aprenda, es el vector de rótulos.  
+ 
+ 
+Con base en el vector de características X, se encuentran las salidas de cada capa de la red, no 
+interesa la última A2, para contrastarla contra el vector de rótulos Yr.  
+ 
+ 
+Permite calcular el error entre lo que produce la red, A2 y lo que se espera que debe dar, Yr.  
+ 
+ 
+El algoritmo de retropropagación, funcional, cuyas entradas son las salidas de cada una de las 
+capas, el vector de entrada X y el rótulo Yr.   
+ 
+ 
+Se llama la función de retropropagación y produce los cambios que se deben hacer a los vectore4s 
+de sesgo y a las matrices de pesos.  
+ 
+ 
+Definición de la tasa de aprendizaje 
+ 
+ 
+Se actualizan los pesos, es la primera iteración o época del aprendizaje.
+### pagina 23
+ 
+Los valores han mejorado, aunque muy poco.  
+ 
+ 
+Es la forma en que se corre el aprendizaje de una red neuronal aquí por 50.000 épocas. El 
+resultado ha mejorado. Se diría que el segundo vector está bien pero falta el otro resultado. Este 
+es el proceso de aprendizaje de una red neuronal. 
+ 
+  
+Ejemplo 2. Reconocimiento de vocales. Se definen vocales de tamaño 4 X 5 pixeles. Se 
+entrena la red y luego se le da una vocal para que se reconozca. Por favor cargar 
+ReconocVocales y correrlo. 
+ 
+De números con base en el data set MNIST de números escritos a mano, hacer 
+reconocimiento de números escritos a mano.  
+ 
+Uso de librerías para la construcción de modelos 
+Se va a hacer una introducción al uso de tensorflow, que permite la creación de modelos 
+usando diferentes lenguajes. En el ambiente Python se instala con: pip install tensorflow. 
+Veamos un ejemplo: 
+ 
+Se dan una serie de puntos en los arreglos xs y ys. Se busca un modelo que permita la 
+predicción del valor y para cualquier nuevo punto x.  A c
+### pagina 24
+ 
+ 
+Se importan las librerías requeridas, se tiene solo una neurona, con función de activación sigmoidal 
+y una función de pérdida de mínimos cuadrados. Se entrena el modelo durante 100 épocas.  
+ 
+ 
+ 
+ 
+ 
+Se presentan las 10 primeras épocas, se puede observer cómo va disminuyendo la pérdida. 
+ 
+Instrucciones para dibujar la función de pérdida.
+### pagina 25
+ 
+ 
+5.7 Aprendizaje profundo (Deep Learning) 
+Como se puede apreciar en la figura 5.19, en Deep Learning se tiene una RNA, como las que se han 
+estudiado, simplemente que el adjetivo “Deep” hace referencia a que el número de capas ocultas 
+es relativamente alto, hablamos del orden de 7, 8 o 9 capas. Claramente funciona el mismo 
+algoritmo de retropropagación.  
+ 
+ 
+ 
+Figura 5.19. Red neuronal profunda. Con varias capas ocultas. 
+ 
+5.8 Hacia Deep learnig, conceptos básicos de computación visual 
+ 
+5.8.1 Redes convolucionales. 
+Una convolución es simplemente un filtro de pesos que se usa para multiplicar un pixel por 
+sus vecinos, para obtener un nuevo valor para ese pixel. En el caso del reconocimiento de
+### pagina 26
+imágenes con redes neuronales se puede tener mayor claridad sobre su utiliz ación. Veamos por 
+ejemplo el caso en que se quiere hacer el reconocimiento de una cara. Una cara tiene una serie de 
+características interesantes: los ojos no quedan muy distantes entre sí, bajo los ojos está centrada 
+la nariz y bajo la nariz esta la boca. Estos elementos que conforman la cara se consideran detectores 
+locales, figura 5.20. Los detectores locales buscan en la imagen puntos localmente interesantes. 
+ 
+ 
+Figura 5.20. Imagen con detectores locales- 
+ 
+Las colecciones de puntos localmente interesantes se combinan para construir clasificadores. Con 
+Dee Learning se aprenden implícitamente estos rasgos (features). 
+ 
+Figura 5.21. En cada capa se va aprendiendo una serie de rasgos, hasta que en la última capa se 
+hace la predicción o reconocimiento.  
+ 
+Pero además se puede pensar que estos rasgos son comunes a una gran cantidad de imágenes. 
+Luego las primeras capas lo que hacen es encontrar rasgos que son comunes a muchas imágenes. 
+Esta es la idea de la trasferencia de aprendizaje en redes con muchas capas. 
+ 
+En el caso de la figura 5.22, la red neuronal se conforma de 8 capas para realizar la clasificación entre 
+perros y gatos. Una vez que la red a aprendido esta clasificación, es decir, se tiene los pesos 
+calculados en cada capa para realizar esta clasificación, se puede tomar la misma re d neuronal 
+dejando estos pesos ya calculados hasta la capa 7, incluir otra capa para que prenda a reconocer
+### pagina 27
+otra clase de imágenes, como sillas, elefantes, carros y cámaras de fotografía. Realmente es muy 
+provechoso aprovechar el conocimiento de las capas previas. 
+Figura 5.21. 
+ 
+Figura 5.22.  Red neuronal de ocho capas. El aprendizaje para clasificar perros y gatos se puede 
+utilizar en otro tipo de reconocimiento o clasificación.  
+ 
+Veamos un ejemplo, para detectar bordes. La idea es que a la matriz que representa una imagen 
+se le aplican ciertos filtros que permiten detectar los bordes. En este caso tenemos la matriz: 
+ 
+ 
+Veamos ahora en que consiste la operación convolución. Tomamos una matriz 3 X 3 y la usamos 
+como un filtro
+### pagina 28
+Para aplicar el filtro, primero la matriz de la imagen 4 X 4, se divide en 16 matrices, 3 X 3 
+                 
+ 3 0 1  0 1 2  1 2 7  2 7 4  
+ 1 5 8  5 8 9  8 9 3  9 3 1  
+ 2 7 2  7 2 5  2 5 1  5 1 3  
+                 
+ 1 5 8  5 8 9  8 9 3  9 3 1  
+ 2 7 2  7 2 5  2 5 1  5 1 3  
+ 0 1 3  1 3 1  3 1 7  1 7 8  
+                 
+ 2 7 2  7 2 5  2 5 1  5 1 3  
+ 0 1 3  1 3 1  3 1 7  1 7 8  
+ 4 2 1  2 1 6  1 6 2  6 2 8  
+                 
+ 0 1 3  1 3 1  3 1 7  1 7 8  
+ 4 2 1  2 1 6  1 6 2  6 2 8  
+ 2 4 5  4 5 2  5 2 3  2 3 9  
+                 
+ 
+Ahora, cada elemento de la nueva matriz se calcula tomando cada una de las submatrices y 
+multiplicándola, de una manera especial, por el filtro.  
+[
+3  0 1
+1  5 8
+2  7 1
+] ∗ [
+1  0  ‐ 1
+1  0  ‐ 1
+1  0  ‐ 1
+] 
+ 
+Así se calcula el primer elemento de la nueva matriz: 
+3 X 1 + 1 X 1 + 2 X 1 + 0 X 0 +5 X 0 + 7 X 0 + 1 X -1 + 8 X -1 + 2 X – 1 = - 5 
+Se hace el mismo cálculo para todas las otras submatrices, obteniéndose la siguiente matriz: 
+ 
+ 
+ 
+ 
+De esta manera al hacer la convolución de una matriz 6 X 6 con un filtro 3 X 3, obtenemos una 
+matriz 4 X 4. De la misma manera se calculan los siguientes elementos de la matriz 4 X 4:
+### pagina 29
+ 
+ 
+Algunos de los problemas de visión computacional que se resuelven con CNN son: clasificación de 
+imágenes, detección de objetos y transferencia de estilo neuronal. Un problema importante con 
+los problemas de visión computacional es que los datos de entrada son realmente cuantiosos. 
+ 
+5.8.2 Polling 
+Pooling 
+Pooling es el proceso de eliminar pixels en una imagen, mientras se mantiene la semántica del 
+contenido dentro de la imagen. Esto se explica mejor visualmente. La figura 5.23, muestra el 
+concepto de un max pooling.  
+ 
+ 
+Figura 5.23. Demostración de max pooling 
+En este caso, considere que la caja de la izquierda son los pixeles que están una imagen 
+monocromática. Los agrupamos en arreglos de 2 X 2, en este caso los 16 bits se agrupan en 4 
+arreglos de 2 X 2. Estos se llaman pools.  
+ 
+Cuando seleccionamos el máximo valor, en cada uno de los grupos, y los reagrupamos en una 
+nueva imagen. De esta manera los pixels de la izquierda se reducen en un 75% (de 16 a 4), con el 
+valor máximo de cada pool conformando la nueva imagen. Ascendente de la figura 5.24. Con las 
+líneas verticales ampliadas, después de que se aplica el max pooling.
+### pagina 30
+ 
+Figura 5.24. Ascendente después del filtro vertical y el max pooling 
+ 
+Note que las características filtradas no solo se han mantenido, sino que además han mejorado. 
+También el tamaño de la imagen ha cambiado de 512 X 512 a 256 X 256, un cuarto del tamaño 
+original. 
+ 
+Ejemplo 
+Se crea un modelo para reconocer imágenes de 28 X 28 pixels. Se define una red de 128 
+conectadas, con función de activación Relu.  La escogencia de 128 capas es de alguna 
+manera caprichosa, se diseña el número de capas para escoger el número apropiado de 
+valores que le permitan al modelo realmente aprender, los parámetros. A veces se 
+experimenta con diferentes redes para escoger mejor los parámetros, este proceso se 
+llama sintonización de hiperparámetros. La última instrucción hace referencia a la capa de 
+salida que calsifica las imágenes en 10 clases,  Utiliza la función de activación softmax, que 
+produce valores entre 0 y 1. 
+ 
+ 
+ 
+ 
+5.9. Ejercicios. 
+1. Tome una tabla de datos de un experimento cualquiera. Encuentre un modelo con base en una 
+red neuronal de dos capas ocultas. Dele datos a ese modelo para hacer una predicción. 
+2. Con base en la librería tensorflow, descargue el data set fashion MNIST. Haga una clasificación 
+de  prendas de vestir. Use una red neuroanl con dos capas ocultas y pruebe el modelo, ¿qué 
+precisión obtuvo? Saque conclusiones.
+### pagina 31
+3. Con base en la librería tensorflow, descargue el data set fashion MNIST. Haga una clasificación 
+de  prendas de vestir. Explique cada una de las funciones y las principales instrucciones, saque 
+conclusiones. 
+4. De la librería de Kaggle para Python, baje un dataset, estudie sus características (features) 
+y su rótulo. Genere un modelo y tome ejemplos de internet y analice los resultados.   
+5. Punto libre. 
+ 
+5.10 Bibliografía 
+1. K. He, X. Zhang, S. Ren y J. Sun, Deep Residual Learning for Image Recognition, Microsoft 
+Reasearch. 
+3. Laurence Moroney, AI and Machine Learning for Coders A Programmer’s Guide to Artificial 
+Intelligence. 
+4. A. Ng, Machine Learning, Coursera

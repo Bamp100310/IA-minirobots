@@ -1,0 +1,420 @@
+### pagina 1
+1. Panorama de la IA 
+José J. Martínez P. 
+ 
+Jmcursosingenieria111@gmail.com 
+Septiembre 2026 
+ 
+ 
+Un acercamiento a la IA 
+La IA es la tecnología más fascinante y revolucionaria de nuestro tiempo, pues impacta cada vez más 
+la sociedad mundial, transformando la gran  mayoría de quehaceres de la humanidad. Se ha 
+convertido en el nuevo paradigma de la ingeniería, pues en este momento no se puede concebir un 
+nuevo producto o servicio que no incluya alguna de sus herramie ntas ya sea en su diseño, en su 
+proceso de construcción o en su operación. Desde 2023 la IA ha tenido más titulares periodísticos 
+que cualquier otra tecnología y que muchos otros temas. 
+Los inicios de la IA se dieron con la construcción del primer computador americano en 1943, se 
+concretaron las posibilidades de implementar procesos de razonamiento humano, lo que inspiró a 
+varios científicos a discutir la posibilidad de llegar a un “cerebro electrónico”.  El término Inteligencia 
+Artificial fue acuñado en 1956, en un taller realizado en Darmouth College, al que asistieron muchos 
+de los que posteriormente fueron los líderes en investigación en este campo, como H. Simon, J. 
+McCarthy, C. Shannon, A Newell y M. Minsky. El documento que se produjo en esta reunión 
+define “el problema de la inteligencia artificial e s el de construir una máquina, que, si se 
+comporta de manera similar al comportamiento que realice un ser humano, esta sería 
+llamada inteligente”. Aunque han aparecido diversas opiniones sobre la definición de la IA, 
+aquí seguimos la orientación anterior. Veamos ahora los cinco diferentes enfoques que se 
+han trabajado para llevar al computador esos procesos de toma de decisiones humanas. 
+ 
+Considerando el potencial estratégico y transformador de la IA, diversos gobiernos y organizaciones 
+consideran esta tecn ología como un elemento importante en el juego geopolítico   que se está 
+presentado a nivel global en este momento, como es el caso de los chips H20 de NVIDIA. Por lo que 
+los países avanzados invierten ingentes recursos en  muchos planes estratégicos para fomentar la 
+innovación con la utilización y desarrollo de herramientas de IA. 
+Una primera definición es la de IA General y de IA Estrecha. La IA General busca que todo un gran 
+sistema funcione con IA, es decir la automatiza ción completa, por ejemplo, de una ciudad usando 
+IA. Est a todavía es una meta a largo plazo  y muchos autores consideran imposible de lograr la, 
+aunque si bien ya hay algunos proyectos que se han comenzado a construir como el proyecto Arup 
+en el Valley Cloud en el sur de China, se considera que todavía falta mucha interoperabilidad .  De 
+manera que lo que se trabaja  actualmente es la IA estrecha, el uso de IA para la solución de 
+problemas aislados, específicos.  
+ 
+Los desarrollos recientes especialmente en Machine Learning, ML, Deep Learning, DL, e IA 
+Generativa, IAGen, especialmente esta última, han llevado directamente a que la sociedad cambie 
+a nivel planetario, por las formas en que ahora las personas perciben el mundo. Aplicaciones de IA 
+Generativa como Chat-GPT, DeepSeek, y otras, confrontan el sistema de educación, el sistema de 
+justicia y el ejercicio profesional en muchas especialidades, poniendo en riesgo muchos puestos de
+### pagina 2
+trabajo; y si somos audaces tambié n creando muchos puestos de trabajo. Vivimos actualmente 
+momentos de verdadera revolución por la disponibilidad y utilización de estas herramientas, y ahora 
+su utilización como Apis en el desarrollo de nuevas aplicaciones. Volviendo a la IA General, algunos 
+autores consideran que la IAGen es uno de sus componentes claves , por la posibilidad de generar 
+contenido, simular el pensamiento humano y tomar decisiones complejas. 
+Además, la IA y la IAGen se ha comenzado a utilizar en otros dominios, como en el caso de las 
+máquinas donde se pretende dotar las con razonamiento cognitivo , es decir mejorar su forma de 
+procesar la información para solucionar problemas, tomar decisiones, llegar a conclusiones, tener 
+conciencia espacial y actuar de manera significativa en contextos del mundo real. Lo que se conoce 
+como IA Física. 
+Sin embargo, todo esto es en el dominio de lo digital, ¿cuáles son las proyecciones en el mundo 
+real? Se llega entonces a la IA Física. La IA Física integra sistemas físicos, robots, vehículos, aparatos, 
+para percibir razonar y actuar en el mundo real.  Combina la comprensión digital: visión, audio, 
+lenguaje; con la incorporación física : sensores, actuadores, para la toma de decisiones en tiempo 
+real, permitiendo que las máquinas “hagan”.  
+ 
+1. Enfoques para afrontar la IA 
+1.1 Pensar Humanamente 
+Si decimos que un algoritmo “piensa” como un humano, debemos tener alguna forma de 
+determinar cómo piensa un humano. Así que se necesita entrar en el trabajo real de cómo funciona 
+la mente humana. La mejor forma de hacerlo es a través de experimentación psicológica. Una vez 
+se tenga una teoría precisa y suficiente de la mente, se vuelve posible expresar la teoría como un 
+programa de computador. Si la entrada/salida y el comportamiento en el tiempo concuerdan con el 
+comportamiento humano, esta es una evidencia de que algunos mecanismos del programa pueden 
+operar en los humanos. El campo interdisciplinario de la ciencia cognitiva reúne modelos 
+computacionales a partir de la IA y de técnicas experimentales de la psicología para tratar de 
+construir teorías precisas y probables del trabajo de la mente humana. 
+1.2 Inteligencia Artificial Simbólica 
+Como vimos, Aristóteles fue el primero en tratar de codificar el “pensamiento correcto”, esto es, 
+procesos de razonamiento irrefutables. Sus famosos silogismos proveen patrones de estructuras de 
+argumentos, que siempre llevan a conclusiones correctas a partir de premisas correctas. 
+En la conferencia de 1956 en Darmouth College se planteó que “cada aspecto  del aprendizaje o 
+cualquier otra característica de la inteligencia puede, en principio, describirse en forma tan precisa 
+(formal) que se pueda construir una máquina para simularla. Se tratará de encontrar cómo hacer 
+que las máquinas utilicen el lenguaje, formen abstracciones y conceptos, solucionen la clase de 
+problemas ahora reservados para los humanos y se mejoren a sí mismasi”. Esta definición se conoce 
+como IA simbólica.  
+Sin embargo, este enfoque tiene un obstáculo importante, en la gran generalidad de casos, no es 
+fácil a partir de conocimiento informal, establecer ese conocimiento en términos formales, en 
+notación lógica. Este enfoque solo se utiliza en ambientes completamente controlados.
+### pagina 3
+1.3 El enfoque de agentes 
+En este enfoque, la IA se ve como el estudio y construcción de agentes inteligentes. En el enfoque 
+de IA simbólica, todo el énfasis está en las inferencias correctas. Un agente inteligente puede hacer 
+inferencias correctas, debido a que una forma de actuar racionalmente es razonar lógicamente para 
+llegar a la conclusión, de que dada una acción se llegará a las metas que uno ha definido, y luego 
+actuar sobre esa conclusión.  
+De la figura 1.1, se puede  observar que un  agente inteligente es un ente que percibe y actúa.  El 
+ambiente produce mucha información, que el agente percibe y  que filtra la información pertinente 
+a tra vés de sus sensores, que lleg a a su modelo mental , que la ana liza y decide ordenar a los 
+actuadores ejecutar acciones. 
+ 
+ 
+Figura 1.1. Un agente inteligente. 
+Algo interesante de observar también en la figura 1.1 es la connotación humanoide del agente. Algo 
+que de alguna manera lo podemos asumir al vernos como agentes inteligentes: con base en nuestro 
+modelo interno, recibimos la información que nos provee el medio ambiente, filtrada por nuestros 
+sensores, la procesamos y la interpretamos , con base en nuestro modelo interno,  para tomar 
+nuestras decisiones, en espera de obtener algún tipo de recompensa. 
+1.4 Sistemas bio-inspirados 
+Cuando observamos los seres vivos, encontramos que existe una gran diversidad de especies, que 
+aprovechan diversos nichos ecológicos para mantenerse  y reproducirse. Cada ser es autónomo, 
+capaz de auto-organizarse y crear estrategias, para mantenerse vivo y lograr enviar su información 
+genética al futuro. Su lucha permanente en un entorno incierto, la generación de estrategias para 
+atrapar presas o para eludir predadores, son todas acciones “inteligentes”. La observación de estos 
+comportamientos y de sus procesos, para la solución de los problemas que enfrentan, permite 
+pensar en el desarrollo de herramientas de IA. 
+ 
+1.5 El enfoque de datos 
+Los datos, provienen de hechos reales, irrefutables, que de una u otra manera han sucedido, son 
+verdades, son la experiencia humana en términos digitales.   que podemos usarlos para solucionar
+### pagina 4
+problemas complejos, ¿que solo soluciona el humano?  Esto ha llevado al desarrollo de nuevas 
+ciencias y tecnologías como la Ciencia de Datos, el Big Data e incluso la Física Social. 
+Con esta disponibilidad de datos,  experiencias de miles de humanos, a través de su estudio, 
+procesamiento y análisis, no solamente se construyen modelos predictivos de sistemas bastante 
+complejos, sino también se obtienen  ideas útiles, es lo que se conoce como Machine Learning, ML. 
+A partir de ahí, se ha seguido con Deep Learning y IAGen. Este enfoque de datos es tan importante 
+en este momento, que en algunos ambientes se considera que solo esto es IA, cuando realmente es 
+solo un subcampo de la IA.  
+ 
+3. Pero ¿qué es inteligencia? 
+Entre las diferentes definiciones de inteligencia se pueden r esaltar algunas frases: mayor 
+importancia para la  vida práctica ; aprender o sacar provecho de la experiencia; adaptarse 
+adecuadamente; aprendió o puede aprender ; resolver problemas nuevos ; superar obstáculos ; 
+adaptarse y prosperar en cualquier entorno dado . Estas frases conllevan metas, aprendizaje, 
+memoria, adaptación e incertidumbre sobre el ambiente.  
+Sin embargo, no aparece la variable tiempo, básica a la “inteligencia”. Por lo que incluimos un 
+sinónimo como “rápidamente” y decir: adaptarse adecuadamente rápidamente; ha aprendido o 
+puede aprender rápidamente; resolver problemas nuevos rápidamente; adaptarse y prosperar en 
+cualquier entorno rápidamente. Aunque es claro que en algunos casos no funcione tan bien. 
+Por otra parte, una de las estrategias de la biología, para lograr la creación del individuo, ha sido la 
+de proveer miles de soluciones al problema de la incertidumbre del ambiente. De esta manera, 
+algunas de esos miles de soluciones, un muestreo de la explosión exponencial de soluciones podrá 
+interactuar exitosamente con ese ambiente y enviar su información genética al futuro, mientras las 
+otras simplemente fracasarán en el proceso.  
+4. Sistemas 
+Con el fin de  predecir el comportamiento de los sistemas en el tiempo, vamos a definir sistema,  
+luego un modelo generalizado de sistema y  con base en ese modelo clasificar los sistemas  para 
+predecir su comportamiento en el tiempo. 
+ 
+Un sistema es un conjunto de elementos, componentes, subsistemas o agentes; que están ligados 
+a través de enlaces, vecindades, canales; de alguna manera. Esta ligazón genera un comportamiento 
+nuevo, emergente, que generalmente no es propio de ninguno de los elementos o agentes que 
+componen el sistema. 
+ 
+4.1 Modelo de sistema matemático generalizado  
+Veamos un modelo matemático generalizado de lo que es un sistema, considerando sus agentes, 
+sus relaciones y cómo se relaciona el comportamiento de los agentes con el comportamiento global 
+del sistema, con el fin de predecir su comportamiento.  Como modelo abstracto es aplicable a 
+cualquier sistema. 
+ 
+Un sistema 𝑆 se puede definir como el par 𝑆 = { 𝐴, 𝑅}, donde 𝐴 es el conjunto de agentes que 
+conforman el sistema y 𝑅 es el conjunto de relaciones o enlaces existentes entre los agentes 𝐴 del 
+sistema 𝑆.
+### pagina 5
+Se define 𝑄 como alguna medida del comportamiento emergente del sistema 𝑆, a partir de los 
+comportamientos 𝑞 de cada uno de los componentes 𝐴 del sistema 𝑆, que expresamos como1: 
+ 
+𝑄 =  𝑓(𝑞1,  𝑞2, … , 𝑞𝑛) 
+ 
+Donde 𝑞𝑖 es el comportamiento del agente 𝑎𝑖 para 𝑖 = 1 , . . , 𝑛 
+ 
+Ahora para encontrar el comportamiento dinámico del sistema 𝑆 en el tiempo, la predicción 
+del comportamiento 𝑆 en función del cambio de comportamiento de cada uno de los agentes, 
+hacemos: 
+  
+𝑑𝑄
+𝑑𝑡 =  𝑑𝑓
+𝑑𝑞1
+𝑑𝑞1
+𝑑𝑡  + 𝑑𝑓
+𝑑𝑞2
+𝑑𝑞2
+𝑑𝑡 + ⋯ + 𝑑𝑓
+𝑑𝑞𝑛
+𝑑𝑞𝑛
+𝑑𝑡  
+Por otro lado, 
+ 𝑑𝑞1
+𝑑𝑡 = 𝑓′(𝑞1,  𝑞2, … ,  𝑞𝑛) 
+𝑑𝑞2
+𝑑𝑡 = 𝑓′(𝑞1,  𝑞2, … ,  𝑞𝑛) 
+… 
+𝑑𝑞𝑛
+𝑑𝑡 = 𝑓′(𝑞1,  𝑞2, … ,  𝑞𝑛) 
+ 
+Es claro que el resultado de la derivada es diferente para el cambio de comportamiento de cada 
+agente. Entonces ahora, vamos a clasificar todos los sistemas a partir de estas ecuaciones, en: 
+Sistemas Simples, Sistemas Complicados, Sistemas Caóticamente Desorganizados y Sistemas 
+Complejos. 
+ 
+Sistemas Simples  
+En los sistemas simples, 𝑆𝑠 = {𝐴𝑠, 𝑅𝑠}, el número de agentes 𝐴𝑠 es muy bajo, del orden de 2, 3 o 
+4 agentes y el conjunto de relaciones entre esos agentes 𝑅𝑠 está definido formalmente , 
+matemáticamente. Además, se conoce el comportamiento de cada agente. Luego no hay 
+ningún problema en encontrar cambios o hacer predicciones en el sistema cuando cambia 
+alguno de los agentes. Por ejemplo, todos los sistemas eléctricos, están compuestos de tres 
+agentes fundamentales: resistencias, condensadores y bobinas. Veamos la ecuación que incluye 
+estos tres elementos en una malla figura 3.1, que tiene una fuente (𝑡):  
+ 
+Figura 1.4. Circuito eléctrico con los tres agentes universales. 
+                                                           
+1 Ecuación 3.1, página 56, General Systems Theory, L. von Bertalanffy, 1968
+### pagina 6
+ 
+𝐿 𝑑𝑖
+𝑑𝑡 + 𝑅𝑖 +  1
+𝐶  ∫ 𝑖
+𝑡
+𝑡0
+𝑑𝑡 + 𝑣𝑐(𝑡0) = 𝑣(𝑡) 
+Donde 𝑹 es la resistencia, 𝑳 es la inductancia de la bobina, 𝑪 la capacitancia del condensador e 
+𝒊 es la corriente que fluye por el circuito. (𝒕𝟎) es la carga del condensador en tiempo cero. Donde 
+sus agentes son 𝑹, 𝑳 𝑦 𝑪, con todos sus operadores lineales como son la multiplicación, la 
+derivada y la integral.  Los sistemas que se estudian en diferentes ramas de la ingeniería son 
+sistemas lineales, a los que se ha llegado a través de diferentes abstracciones. Así en el caso de 
+los sistemas mecánicos, muchas de sus ecuaciones son iguales a las de los circuitos eléctricos , 
+esta es la razón de los computadores analógicos. De esta manera, tenemos que, para este tipo 
+de sistemas, las analogías permiten el estudio de diferentes sist emas sin importar su 
+composición física. 
+ 
+ 
+Sistemas Complicados 
+En los sistemas complicados, 𝑆𝑐 = {𝐴𝑐, 𝑅𝑐}, el número de agentes 𝐴𝑐  no es muy alto; y el 
+conjunto de relaciones 𝑅𝑐 entre los comportamientos de los agentes es = {Ø}. Además de que 
+el comportamiento de cada agente es independiente, también es constante. En otras palabras:  
+𝑑𝑞1
+𝑑𝑡 = 𝑓′(𝑞1) 
+𝑑𝑞2
+𝑑𝑡 = 𝑓′(𝑞2) 
+… 
+𝑑𝑞𝑛
+𝑑𝑡 = 𝑓′(𝑞𝑛) 
+ 
+De manera que: 
+𝑑𝑄
+𝑑𝑡 =  𝑑𝑓
+𝑑𝑞1
+𝑓′(𝑞1) + 𝑑𝑓
+𝑑𝑞2
+𝑓′(𝑞2) + ⋯ + 𝑑𝑓
+𝑑𝑞𝑛
+𝑓′(𝑞𝑛) 
+ 
+El comportamiento dinámico del sistema depende del comportamiento de cada agente 
+individual. Básicamente son los sistemas tecnológicos, construidos por el hombre a través de 
+procesos de ingeniería, siguiendo ciertos procedimientos y diseñados para un amb iente 
+determinado. Aunque su comportamiento no es lineal, es completamente predecible.   
+  
+Por ejemplo, un carro. Está diseñado para que en el ambiente haya oxígeno disponible para que 
+con el combustible explote en los cilindros del motor. A demás, requiere una estructura de 
+carreteras sobre las cuales se despla ce con seguridad, siguiendo un reglamento de tránsito, a 
+unas determinadas velocidades, llevando un determinado número de personas. El consumo de 
+combustible es casi proporcional a los recorridos que realiza. Además, cuando un carro se daña, 
+se siguen procedimientos muy precisos, complicados, pero que a la larga permiten su arreglo.
+### pagina 7
+ 
+Figura 1.6. Sistemas complicados.  
+ 
+Es interesante observar que estas piezas se modelan en sistemas CAD, que obedecen a una serie 
+de ecuaciones matemáticas. Son el producto de sistemas simples.  
+ 
+Sistemas Caóticamente Desorganizados  
+En los sistemas caóticamente desorganizados, 𝑆𝑐𝑑 = {𝐴𝑐𝑑, 𝑅𝑐𝑑}, el número de agentes 𝐴𝑐𝑑 es alto 
+o muy alto. El conjunto de relaciones 𝑅𝑐𝑑 entre los comportamientos de los agentes es = {Ø}. 
+En estos sistemas cada agente se comporta de manera independiente de los otros agentes y su 
+espacio de estados es el mismo. En momentos diferentes un ag ente que estaba en un estado 
+puede cambiar a otro estado  independientemente, de manera que, para este caso podemos 
+suponer que sus comportamientos son similares, 𝑓′(𝑞𝑖)  =  𝑓′(𝑞). 
+𝑑𝑞1
+𝑑𝑡 = 𝑓′(𝑞) 
+𝑑𝑞2
+𝑑𝑡 = 𝑓′(𝑞) 
+… 
+𝑑𝑞𝑛
+𝑑𝑡 = 𝑓′(𝑞) 
+De manera que: 
+𝑑𝑄
+𝑑𝑡 =  𝑑𝑓
+𝑑𝑞1
+𝑓′(𝑞)  +  𝑑𝑓
+𝑑𝑞2
+𝑓′(𝑞) + ⋯ + 𝑑𝑓
+𝑑𝑞𝑛
+𝑓′(𝑞) 
+Entonces  
+ 
+𝑑𝑄
+𝑑𝑡 = 𝑛 𝑑𝑓
+𝑑𝑞 𝑓′(𝑞) 
+Se ve aquí que el comportamiento de los sistemas caóticamente desorganizado es la sumatoria 
+de los comportamientos de sus agentes, por eso para el estudio y predicción del 
+comportamiento de estos sistemas se aplica toda la teoría estadística.
+### pagina 8
+ 
+Figura 1.7. Sistemas caóticamente desorganizados  
+ 
+ 
+Sistemas Complejos  
+En los sistemas complejos, 𝑆𝑐𝑜 = {𝐴𝑐𝑜, 𝑅𝑐𝑜}, el número de agentes 𝐴𝑐𝑜 es relativamente alto. El 
+conjunto de relaciones 𝑅𝑐 entre los comportamientos de los agentes no se puede plantear en 
+términos formales dado que el comportamiento de un agente influye de diversas maneras en 
+el comportamiento de otros agentes. Así que si tomamos , el cambio de comportamiento para 
+el agente 𝑞1: 
+𝑑𝑞1
+𝑑𝑡 = 𝑓′(𝑞1,  𝑞2, … ,  𝑞𝑛) 
+ 
+Derivando                                  
+𝑑𝑞1
+𝑑𝑡 = 
+𝜕𝑓′′
+𝜕2𝑞1
+𝜕2𝑞1
+𝑑𝑡  + 
+𝜕𝑓′′
+𝜕2𝑞2
+𝜕2𝑞2
+𝑑𝑡  + ⋯ + 
+𝜕𝑓′′
+𝜕2𝑞𝑛
+𝜕2𝑞𝑛
+𝑑𝑡  
+ 
+Ahora,                                         
+𝜕2𝑞1
+𝑑𝑡 = 
+𝜕𝑓′′′
+𝜕3𝑞1
+𝜕3𝑞1
+𝑑𝑡  + 
+𝜕𝑓′′
+𝜕3𝑞2
+𝜕3𝑞2
+𝑑𝑡  + ⋯ + 
+𝜕𝑓′′
+𝜕3𝑞𝑛
+𝜕3𝑞𝑛
+𝑑𝑡  
+ 
+Podemos seguir derivando, no sabemos hasta donde, para tener el cambio de comportamiento 
+de solo el agente 𝑞1  del sistema. Lo mismo se debe considerar para el resto de los agentes del 
+sistema. Y una vez tengamos todos esos comportamientos ver cómo se obtiene el 
+comportamiento dinámico de todo el sistema. Dado que no podemos conocer estos 
+comportamientos, tampoco podemos conocer el comportamiento global del sistema, en otras 
+palabras desde esta perspectiva , no podemos predecir el comportamiento de un sistema 
+complejo. 
+ 
+Complejidad computacional. Otro tipo de complejidad es la complejidad computacional que 
+tiene que ver con el costo computacional, en términos de tiempo de ejecución, de un algoritmo. 
+Casi que la totalidad de algoritmos que se ejecutan actualmente en los computadores tiene un 
+tiempo de ejecución proporcional al número de transacciones o datos que procesan, es una 
+relación lineal. Sin embargo, hay algoritmos cuyo tiempo de ejecución crece exponencialmente 
+o más, con el número de transacciones o datos que procesan. Por ejemplo, en el Sudoku, el 
+crecimiento es impresionante. Un sudoku de tamaño 2x2 tiene 288 diferentes combinaciones,
+### pagina 9
+mientras uno de 3X3, el más popular, tiene aproximadamente 6.7 x 1021 posibles configuraciones; y 
+el de 4x4, tiene aproximadamente 6 x 1098.  Claramente encontrar la solución usando el método de 
+fuerza bruta es imposible. Este es otro nicho donde se requieren técnicas de IA para la solución.  
+De manera que el nicho de aplicación de la IA está en la predicción del comportamiento de los 
+sistemas complejos y en la solución de sistemas cuya complejidad computacional sea muy alta.  
+ 
+5. Herramientas de IA 
+Considerando los enfoques para afrontar la IA, se han desarrollado muchas herramientas que 
+podemos clasificar de la siguiente forma: 
+Orientadas al comportamiento. Entre otras muchas las más destacadas son: 
+ Autómatas celulares 
+ Algoritmos genéticos 
+ Programación genética 
+ Lógica difusa 
+Con base en Redes neuronales Artificiales: 
+ Redes neuronales artificiales 
+ Machine Learning 
+ Deep Learning 
+ IA Generativa 
+ 
+5. Ejercicios 
+1.1 Pídale a varios LLMs de IAGen una definición de IA, compárelas con lo visto en el capítulo. 
+1.2 Dé una definición propia de inteligencia artificial. 
+1.3 Vea el video que se encuentra en https://www.youtube.com/watch?v=JsmKUCiPHUY&t=7s . 
+Haga un análisis de lo discutido en el documento con respecto al video. 
+1.4 Haga un resumen sobre Cosmos de NVIDIA 
+1.5 Investigue sobre los planes del gobierno con respecto a la IA. 
+ 
+ 
+8. Bibliografía.  
+Adami, C., Introduction to Artificial Life, Springer-Verlag, 1998.  
+Brainterberg V, Vehicles, Experiments in Synthetic Psychology, MIT Press 
+Franco O., Escallon S., Estudio Básico de Vida Artificial, Facultad de Ingeniería, Universidad 
+Nacional, Bogotá, 1995.  
+Both A., Kuhn W., Matt Duckham, Spatiotemporal Braitenberg Vehicles.  
+Gribbin J., Deep Simplicity, Random House, 2004.  
+Langton, Cristopher, Artificial Life, an Overview, A Bradford Book, MIT Press, 1995. 
+Legg S., Hutter M., A Collection of Definitions of Intelligence, IDSIA Switzerland, 2007. 
+Martínez J. J., Vida artificial, nuevos conceptos para la ingeniería, Revista Facultad de Ingeniería, 
+Universidad Nacional, Bogotá, 1999.  
+Martínez J. J., Vida Artificial. Revista de la Facultad de Medicina, Universidad Nacional, Bogotá, 
+Volumen 46, No. 2. Abril - Junio 1998. 
+Mijwel M. M., History of Artificial Intelligence, Universidad de Bagdad, 2015.
+### pagina 10
+Mordechai Ben Ari, F. Mondada, Elements of Robotics, Springer Open, 2018 
+https://www.youtube.com/watch?v=-lnHHWRCDGk 
+ 
+i https://www.historyofdatascience.com/dartmouth-summer-research-project-the-birth-of-artificial-
+intelligence/ 
+ 
+Con respecto al desarrollo del curso: 
+1. Crear un grupo de whatsApp. 
+2. C uando se utilicen herramientas de IA Generativa, se deben hacer comentarios sobre que 
+herramientas utilizaron, los prompts y hasta qué punto les sirvió para el desarrollo de la 
+documentación, los ejercicios o proyectos.  
+3. Crear un sitio en GitHub para la entrega de los documentos y los programas. 
+4. Los programas deben presentarse en Jupyter Notebook o en COLAB. Cada uno debe estar incluido 
+en un documento que describa sus diferentes partes y sus resultados.

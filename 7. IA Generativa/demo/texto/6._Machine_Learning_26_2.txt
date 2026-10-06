@@ -1,0 +1,724 @@
+### pagina 1
+ 
+6. INTRODUCCION A MACHINE LEARNING 
+José J. Martínez P. 
+Jmcursosingenieria111@gmail.com 
+Septiembre 2026  
+6.1 Introducción  
+Machine Learning, ML,  es un término que ya se venía utilizando desde el siglo pasado. Aunque, 
+su florecimiento no es muy viejo, sol o se logró hasta 2005, cuando G.  Hinton, uno de los 
+ganadores del Premio Nobel de Física 2024, publicó un artículo en el que mostraba cómo al 
+entrenar una red neuronal profunda, se podían reconocer dígitos escritos a mano, con una 
+precisión del 98%. Como se ha mencionado, la historia de las redes neuronales ha sido una 
+historia de amores y desamores y a finales de los 90s se había abandonado su investigación en 
+estas redes. Con este artículo se demostró que con Deep Learning era posible lograr cosas que 
+ninguna otra técnica de ML había hecho. El entusiasmo se extendió a muchas otras áreas de 
+aplicación y digamos que ahora estamos viviendo el auge de ML, que , considero, va a durar 
+bastante tiempo.  
+ 
+Sin embargo, hay otras técnicas básicas diferentes a las RNAs, para enfrentar los mismos y otros 
+problemas, especialmente Bayes simple, K-NN Nearest,  SVM (Support Vector Machine) y 
+árboles de decisión , que consideramos son importantes de mencionar dentro d e la gama de 
+herramientas de IA. Estas últimas las presentamos en un apéndice.  
+ 
+Supongamos el siguiente problema: traducir un texto escrito en un idioma a otro y solucionarlo 
+con las técnicas actuales de programación. Para hacer un programa de computador que realice 
+esta tarea, i nicialmente, hay que estu diar la gramática de ambos lenguajes, con el fin de 
+codificar sus reglas; algo que no es tan simple. Luego se deben incluir los diccionarios de ambos 
+lenguajes, incluir también la codificación de las búsquedas y seleccionar las palabras más 
+apropiadas en el lenguaje de destino; otra tarea de programación complicada.  
+ 
+Pero hay más, ¿cómo trabajar con palabras homógrafas u homónimas? Por ejemplo, la palabra 
+“can” en inglés, traducida al español puede ser el verbo poder o puede ser simplemente una 
+lata. Todo depende del contexto, una frase con la que nos volveremos a encontrar. ¿Pero cómo 
+codificamos apropiadamente ese contexto?  La solución de este tipo de problemas, bajo es te 
+concepto de programación, es extremadamente difícil y por esto los traductores de le nguajes, 
+antes de ML eran muy pobres.  
+ 
+Ahora las cosas han cambiado. Se encontró que la solución de muchos problemas complejos se 
+encuentra en los datos. Utiliz ando una gran cantidad de datos prove nientes de diferentes 
+fuentes de la web, Google tiene un modelo de traductor pre-entrenado que va mejorando sus 
+resultados, de manera tan sorprendente, que en algunos casos supera el nivel de un traductor 
+humano. 
+  
+Con base en este punto de vista, ahora  se han desarrollado cientos de aplicaciones, que 
+silenciosamente le dan poder a cientos de productos que usamos regularmente; desde mejores
+### pagina 2
+recomendaciones hasta búsquedas por voz. Es por esto que, nos pueden surgir algunas 
+preguntas: 
+ 
+ ¿Qué es ML? 
+ ¿Por qué el  uso de ML? 
+ ¿Cómo aprende ML? 
+ 
+6.2 las respuestas  
+Veamos varias definiciones de ML:  
+ “ML es el campo de estudio que le da a los computadores la habilidad para aprender sin 
+que sean explícitamente programados”. Arthur Samuel 1959.  
+ “ML es la ciencia o el arte de programar los computadores, de manera que aprendan a 
+partir de los datos”.  
+ Una simple: “Sistemas que mejoran su comportamiento con respecto a una tarea con 
+más y más experiencia o datos”  
+ Más orientada a la ingeniería: “Se dice que un programa de computador aprende de la 
+experiencia E, con respecto a una tarea T, con una medida de comportamiento P, si su 
+comportamiento sobre T, medido por P, mejora con la experiencia”. Tom Mitchel 1998.  
+ 
+Otra forma de ver ML. En la figura 6.1, se puede observar, ML en comparación con la 
+programación tradicional tomando como ejemplo encontrar la raíz cuadrada de un número.  
+ 
+Veamos un caso de programación tradicional : p rogramar la solución de un problema 
+matemático utilizando el método de Newton, por ejemplo calcular la raíz cuadrada de un 
+número. En el caso de M L, tendríamos mile s de ejemplos con resultados correctos de la raíz 
+cuadrada y a través de regresión podríamos encontrar el modelo que me permite calcular 
+cualquier raíz cuadrada, y para un caso concreto encontrar la solución.
+### pagina 3
+ 
+ 
+Figura 6.1. Programación tradicional versus ML. 
+ 
+Para mayor claridad, vamos a trabajar un ejemplo que es el filtro que tienen los sistemas de 
+correo electrónico para detectar correos engañosos, que se conocen como SPAM.  El filtro spam 
+que usa nuestro correo, es un programa de ML, que, con base en instancias de emails rotuladas 
+como spam, observa qué mensajes del correo marca o no como spam; y con qué instancias de 
+correos normales, aprende a cómo filtrar mejor el spam. Esas instancias de emails que usa el 
+sistema para aprender se llaman el conjunto de entrenamiento, o dataset. 
+  
+Volviendo a la última definición de ML, la tarea T del filtro Spam es rotular los correos que llegan 
+como spam, correo no deseado, cuando esos correos pr esentan ciertas características 
+(features) que el filtro Spam  tiene clasificad as como comunes a todos los correos spam. La 
+experiencia E, es el conjunto  de correos buenos y malos , es el data set que tiene el sistema y 
+del cual aprende. Este data set, Google lo ha ido recabando de la interacción permanente con 
+sus usuarios en todo el mundo. Mientras que P es la predicción que hace el sistema de si un 
+determinado correo es spam o no; también se conoce como el comportamiento  del sistema, 
+que depende de qué tan bien hace la predicción y se le asigna una precisión. Para esto se usa la 
+Matriz de Confusión, figura 6.2, que se usa mucho en problemas de clasificación
+### pagina 4
+Figura 6.2. Matriz de Confusión, permite encontrar la precisión de un sistema de clasificación 
+por ML. 
+ 
+6.3 Porque el uso de ML  
+Volvamos a nuestro ejemplo del filtro Spam . Digamos que vamos a escribir el programa del 
+sistema clasificador , el filtro spam , usando téc nicas de programación tradicional. Siguiendo 
+unos pasos básicos de Ingeniería de Software, primero debemos enterarnos c ómo son los 
+correos no deseados, có mo es la forma de los encabezados, la del tema y la del contenido. 
+Aparecen palabras como “gratis”, “regalo”, “tarjeta de crédito”, etcétera.  
+ 
+Con base en toda esta información se encuentran estas palabras y algunos patrones que casi 
+siempre se presentan en los correos spam. De manera que como la solución tradicional se entra 
+a programar el filtro; para que cada una de estas palabras y patrones, permitan que el programa 
+detecte los correos no deseados.  
+ 
+Con un gran esfuerzo de programación, puede ser que se llegue a que ese filtro Spam funcione 
+correctamente. Pero solo lo va a hacer durante un determinado tiempo, pues los que producen 
+los correos Spam se dan cuenta y van a buscar otras palabras y otros patrones, para burlar el  
+filtro programado. Ahora, el filtro que se programó deja de funcionar un tiempo, hasta cuando, 
+los desarrolladores del filtro programado se den cuenta de que su sistema está dejando pasar 
+correos spam. 
+ 
+Figura 6.3 Construcción del filtro spam con el enfoque de programación tradicional 
+Ahora las nuevas palabras pueden ser “pandemia”, “soledad”, “ayuda”, “anticovid”. Entonces, 
+después de haber logrado esta tarea, con su correspondiente gasto de tiempo, en el programa 
+se deben incluir  estas nuevas palabras y encabezados ; otro gran esfuerzo . Pero nuevamente 
+quienes producen los spam buscan nuevas formas de que sus correos se an aceptados como 
+correos buenos. De manera que después de un análisis, se tendrá que volver a actualizar el  
+programa del filtro; y así sucesivamente . Entonces l legamos a la conclusión de que 
+definitivamente esta no es la mejor manera de mantener un filtro  actualizado y funcionando 
+permanentemente.
+### pagina 5
+ 
+6.4 Cómo aprende ML 
+En contraste, un filtro de spam basado en técnicas ML, aprende automáticamente qué palabras 
+y frases son buenos predictores , las características,  de spam, detectando patrones 
+inusualmente frecuentes de las palab ras en los correos  spam, comparados con los ejemplos 
+normales.  El programa es mucho más corto, más fácil de mantener y pro bablemente más 
+preciso. Por lo que un filtro spam basado en ML se dará cuenta automáticamente que 
+“pandemia”, “soledad”, “ayuda”, “an ticovid”;  se han vuelto inusualmente frecuente s en los 
+emails rotul ados por los usuarios como spam y comenzará a marcarlos sin necesidad de 
+reprogramarlo. 
+ 
+Figura 6.4. Enfoque de programación con ML. 
+En la figura 6.4, se puede observar cómo funciona la programación ML. El primer paso, lo mismo 
+que en la programación tradicional se estudia el problema, pero luego se cambia , se consigue 
+el data set de spams y hams y se entrena un algoritmo de ML, que es realmente un modelo. Se 
+evalúa su solución hasta cuando el modelo funcione bien y se lanza a producción. Sin embargo, 
+en la medida en que los spams van cambiando, los usuarios van rotulando qué correos son no 
+deseados, el modelo va aprendiendo y se va ajustando permanentemente a las nuevas formas 
+de spam. Así, la actualización del filtro es automática.  
+ 
+Aplicar las técnicas de ML para explorar en grandes cantidades de datos, puede ayudar a 
+descubrir patrones que no eran evidentes, lo que se conoce como “minería de datos”. Otra área 
+donde sobresale ML es en problemas que o son muy comp lejos para el enfoque tradicional, o 
+simplemente hasta ahora no hay un algoritmo conocido.  
+ 
+Aprendizaje. 
+Según Wikipedia, es el proceso por el cual se adquieren y desarrollan habilidades, conocimiento, 
+conductas y valores.   
+Habilidades son un conjunto de capacidades, destrezas y talentos de un humano o un 
+animal para realizar ciertas acciones. 
+Conocimiento, hace referencia a la c omprensión teórica o práctica de un tema; s e 
+adquiere a través del estudio o la experiencia. Puede ser implícito como las habilidades
+### pagina 6
+de un humano o un animal; o explicito como el conocimiento humano escrito. El paso 
+del conocimiento humano de implícito a explicito es complejo y no logra reflejarse 
+completamente.  
+Conducta, o comportamiento, es el conjunto de reglas que utilizan los seres vivos en su 
+entorno ante la presencia o ausencia de estímulos.   
+Valores, son cualidades de un objeto, son agregados a las características físicas del 
+objeto. 
+ 
+Entonces el a prendizaje en ML se basa en el principio de que el dataset, el gr an conjunto de 
+datos, guarda conocimiento alrededor de un tema específico, en otras palabras, guarda  
+conocimiento que a través de sus técnicas se vuelve conocimiento tácito. Pero es posible que 
+ese dataset no incluya todo el conocimiento necesario para que el modelo que se construya con 
+él  no sea el más apropiado para hacer predicciones o clasificaciones.  
+ 
+En resumen, ML es ideal para:  
+ Solucionar problemas para los cuales existen soluciones que requieren mucho 
+refinamiento o largas listas de reglas: un algoritmo ML generalmente puede simplificar 
+el código y comportarse mejor que el enfoque tradicional de programación.  
+ Solucionar problemas complejos: para los cuales se usan fundamentos de enfoques 
+tradicionales que no son una buena solución.  
+ Ambientes fluctuantes: un sistema ML puede adaptarse a nuevos datos.  
+ Sacar ideas sobre problemas complejos con gran cantidad de datos.  
+ 
+ 
+6.5 Aplicaciones de ML  
+Son muchas las áreas de aplicación de ML, que dejan abierta a muchos nuevos desarrollos en 
+diferentes campos, tanto para la predicción o regresión, como para clasificación:  
+ 
+1. Traductores automáticos de lenguajes . Son muy utilizados en diferentes tipos de 
+aplicaciones, pues son universales ya que permiten la traducción de un texto e n un 
+lenguaje a otro de más de 50 posibles lenguajes con una muy alta precisión. Esta es una 
+aplicación de ML, muy importante porque permite con facilidad la comunicación entre 
+los seres humanos. 
+2. Filtros spam para programas malignos (malware). Como lo vimos en nuestro ejemplo, 
+la llegada de correos mal intencionados, pueden inducir a generarle problemas al 
+usuario, lo mismo puede suceder con cualquier otro tipo de información textual, como 
+puede ser la publicidad engañosa. Además, pod er filtrar los programas engañosos o 
+virus, es de mucha utilidad para el usuario normal.  
+3. Reconocimiento de voz. Incluye paso de voz  a texto, en robótica para comandos por 
+voz, identificación de voz, análisis de sentimiento s, síntesis de voz y otras. Es un  
+componente clave para muchas aplicaciones.  
+4. Reconocimiento de imágenes. Es una de las aplicaciones más comunes de ML, por la 
+cantidad de utilidad que tiene en campos que van desde la robótica, la seguridad hasta 
+los sistemas de recomendación por imágenes.
+### pagina 7
+5. Recomendación de productos. O, Sistemas de Recomendación, se usan mucho en 
+comercio electrónico como en Amazon, AliExpress, Netflix. Una vez uno ha seleccionado 
+un producto las redes sociales lo invaden a uno de información referente al producto.  
+6. Asistente personal virtual. Sistemas que ayudan a la toma de decisiones gerenciales 
+leyendo información directamente de las bases de datos empresariales, haciendo 
+promedios y resúmenes para adecuarlas al ambiente. También en herramientas de 
+negociación.  
+7. Vehículos autónomos. Los carros autónomos ya están en prueba en varios lugares del 
+mundo, lo mismo que muchos robots móviles en empresas industriales. También en 
+aviónica, drones, y para exploración espacial, roberts que en determinadas 
+circunstancias funcionan de manera autónoma.  
+8. Detección en línea de fraudes. Las transacciones en línea son permanentes y se utilizan 
+en todo el mundo, aquí la utilización de ML hace estas transacciones confiables y 
+seguras.  
+9. Predicción de l tráfico. Las vías del mundo están cada ve z más congestionadas y los 
+costos en tiempo y dinero de tener personas y mercancías varadas, es muy alto. De 
+manera que cuando se quiere predecir una ruta hay sistemas confiables que lo hacen 
+como “wase”, que funciona en tiempo real, con base en tecnología s y empresas que 
+proveen estos servicios satelitales.  
+10. Diagnóstico médico. ML se comienza a utilizar en diagnóstico médico, especialmente 
+apoyados en tomografías. Ayuda en diagnóstico y hallazgo de tumores de seno y 
+cerebrales. Aquí es importante destacar la riqueza que hay en las historias clínicas, que 
+se tiene de todos los usuarios de los servicios médicos, de cuya riqueza todavía no se 
+tiene conciencia. Es posible que ya haya equipos para este tipo de diagnóstico que 
+directamente incluyan hardware espec ializado con Deep Learning, para diagnóstico 
+rápido. 
+11. Negocios en mercado de valores. El uso de ML en mercado de valores esta muy 
+extendido. Aquí la variable tiempo es fundamental, en algunos negocios de Fintech.  
+ 
+La lista anterior viene ordenada por la ut ilización de datos independientes del ambiente hasta 
+de datos muy dependientes del ambiente.  Lo que nos lleva a tratar de definir ¿qué es 
+aprendizaje? 
+ 
+6.5 Algoritmos de ML  
+Hay muchos otros algoritmos de ML, diferentes a las redes neuronales, que se utilizan con 
+bastante frecuencia, dependiendo de la aplicación,. Entre ellos están: 
+ Regresión lineal 
+ Regresión logística 
+ Algoritmo Bayes simple 
+ Algoritmo Vecinos más cercanos K-nearest o KNN 
+ Algoritmo SVM (Support Vector Machine)  
+ Algoritmo Arboles de decisión 
+Estos algoritmos se presentan en el Apéndice de este capítulo.
+### pagina 8
+6.6 Tipos de aprendizaje en ML  
+Ya hemos hablado de aprendizaje cuando estudiamos el aprendizaje supervisado para el 
+algoritmo de retropropagación en RNAs. Por el tipo de aprendizaje se permite de cierta manera 
+una clasificación de algoritmos de ML.  Hay cuatro categorías importantes de aprendizaje: 
+aprendizaje supervisado, aprendizaje no supervisado, aprendizaje semi -supervisado y 
+aprendizaje reforzado RL.  
+ 
+Figura 6.5. Tipos de aprendizaje. 
+ 
+6.6.1 Aprendizaje supervisado  
+Como ya se ha visto, en el aprendizaje supervisado el conjunto de entrenamiento con el que 
+se alimenta el algoritmo incluye las soluciones deseadas llamadas rótulos o labels. 
+ 
+Figura 6.6. Un conjunto de entrenamiento rotulado para clasificación de spam. 
+El modelo se ajusta  a los datos de entrenamiento que comprenden las entradas y  las salidas. 
+Las técnicas de aprendizaje supervisado se utilizan en: 
+ 
+1. Modelos de clasificación. Reconoce y agrupa ideas, objetos en categorías predefinidas. 
+Por ejemplo: 
+Clasificación de correos Spam y Ham 
+Retención de clientes 
+Clasificación de imágenes 
+Reconocimiento de caras 
+Salud 
+2. Regresión. Se da cuando se crea una ecuación, usando diferente valores de entrada con 
+sus pesos específicos determinados por el valor total del impacto en el resultado y los 
+usamos para generar un estimado del valor de salida.
+### pagina 9
+Por ejemplo, l as aerolíneas se basan fuertemente en ML para predecir que tanto 
+deberían cobrar por el boleto de avión. Usan varias características, como los días que 
+faltan para el vuelo, el día de la semana, el destino; para usarlos con el fin de predecir 
+el costo del boleto de un vuelo determinado que maximice sus ganancias. 
+Otra tarea es predecir un valor numérico objetivo, como el precio de un carro. Sí se tiene 
+un conjunto de datos con características como: kilometraje, edad, marca, y otros, 
+llamados predictores, se puede hacer un modelo de regresión para entrenar el sistema. 
+En la figura 6.7, se ti ene un modelo de regresión ajustado con el conjunto de 
+entrenamiento, en este caso con solo un atributo (feature), el kilometraje, para predecir 
+el valor de un carro. En general hay varias características de entrada.  
+ 
+ 
+Figura 6.7. Un conjunto de entrenamiento rotulado para regresión.  
+ 
+6.6.2 Aprendizaje no supervisado  
+Como se puede intui r, el aprendizaje no supervisado se realiza con un dataset que no tiene 
+rótulos.  Se utiliza cuando se usan algoritmos de ML para analizar y agrupar con base en datasets  
+no rotulados, sin la necesidad de la intervención humana, por ejemplo en: 
+1. Agrupamiento (clustering) , por ejemplo cuando las organizaciones tratan de hacer 
+segmentación de clientes, para hacer mercadeo efectivo. Es realme nte crítico que 
+comprendan quienes son sus clientes para que puedan conectar con ellos de la manera 
+más productiva.  
+En la figura 6.8, se puede apreciar un conjunto de datos sin rótulo.
+### pagina 10
+ 
+Figura 6.8. Un conjunto de entrenamiento rotulado para aprendizaje no supervisado. 
+ 
+ 
+ 
+Figura 6.8. Agrupamiento, resultado de entrenamiento con aprendizaje no 
+supervisado.  
+2. Otro ejemplo de tarea no supervisada es la detección de anomalías, por ejemplo, 
+detectar transacciones inusuales en tarjetas de crédito para prevenir el fraude; 
+encontrar defectos de fábrica o eliminar valores atípicos en los datasets para alimentar 
+otro algoritmo de ML. En la figura 6.9, se puede observar cómo al llegar una nueva 
+instancia de una transacción comercial, el algoritmo puede detectar si la transacción es 
+válida o se trata de una anomalía, es decir de un fraude.
+### pagina 11
+ 
+Figura 6.9. Detección de anomalías. 
+ 
+3. Reducción de la dimensionalidad. Se refiere a técnicas que reducen el número de 
+variables de entrada , cuando en el número de variables de entrada en un dataset  es 
+muy alto, es posible que haya algunos parámetros redundantes. 
+Los algoritmos de visualización son buenos ejemplos de aprendizaje no supervisado. Al 
+alimentarlos con datos complejos y sus rótulos, estos algoritmos obtienen una 
+representación 2D o 3D de sus datos, que se puede plotear fácilmente. Y tratan de 
+preservar la estructura y la manera en que se puede comprender cómo están orientados 
+y organizados los datos y quizá encontrar patrones no sospechados.  
+ 
+ 
+6.6.3 Aprendizaje semi-supervisado  
+El aprendizaje semi -supervisado (SSL) es una técnica de ML , que se presenta cuando hay  una 
+pequeña parte de datos rotulados y cantidades de datos no rotulados, para entrenar un modelo 
+predictivo. Su importancia se debe a lo costoso de la rotulación.  
+ 
+Algunos servicios de almacenamiento de fotos, como Google fotos , son buenos ej emplos de 
+este tipo de aprendizaje. Una vez usted descarga las fotos de su familia allí, este reconoce 
+automáticamente la persona que aparece en diferentes fotografías.
+### pagina 12
+ 
+Figura 6.10. Aprendizaje semi-supervisado. 
+ 
+También son varios los proyectos de este tipo que han desarrollado varias redes sociales como 
+FaceBook. Un algoritmo bastante popular es representar los datos rotulados y no rotulados en 
+forma de grafo y luego aplicar un algoritmo de propagación de rótulos. Este difunde 
+rotulaciones hechas por un humano a través de toda la red del data set.  
+  
+6.6.4 Aprendizaje reforzado  
+En este tipo de aprendizaje, n ormalmente se tiene un “agente”, es el sistema de aprendizaje, 
+que toma acciones en un ambiente definido. Aquí se entrenan los agentes para seguir una 
+política, es decir efectuar una secuencia de decisiones.  
+ 
+Para el entrenamiento, el agente observa el ambiente, toma decisiones y ejecuta acciones. El 
+agente recibe una retroalimentación en términos de recompensas de retorno dependiendo de 
+si la acción fue exitosa o penalidades, en caso contrario. Debe aprender por sí mismo cuál es la 
+mejor estrategia, l a política, para obtener la mayor recompensa. En el tiempo, una política 
+define qué acción debe escoger el agente cuando está en una situación dada.
+### pagina 13
+ 
+Figura 6.11. Aprendizaje reforzado. 
+ 
+Al principio, el agente no conoce nada sobre el ambiente, por lo que toma las acciones de forma 
+aleatoria. Si una acción trae una recompensa positiva, el agente deberá aprender a escoger esa 
+acción más frecuente mente, mientras que, si una acción lleva a  una penalidad, el agente 
+tenderá a escoger esa acción menos frecuentemente. Así, el agente aprenderá a escoger las 
+acciones que maximicen la suma de recompensas recibidas, que se conoce como retorno.  
+ 
+Un muy buen ejemplo del mundo real son los carros autónomos , que tiene varios factores: 
+límites de velocidad, colisiones, zonas de conducción y otros.  
+ 
+Hay tres tipos de algoritmos de aprendizaje por refuerzo:  
+ Q-Learning. El más importante, calcula el refuerzo ´por  estados y acciones. Se usa 
+cuando hay un número finito de estados y acciones. 
+ Iteración de política . Calcula el refuerzo por estados y acciones siguiendo dos pasos: 
+evalúa la política en un paso, seguido por un paso de mejora en la política. Hay un 
+agente y un dominio de estados y acciones. La tarea es encontrar una política que cause 
+el refuerzo para incrementar cada estado inicial, sin causar el refuerzo de ningún otro 
+estado sucesor para disminuirlo. Se usa cuando hay un número infinito de estados y 
+acciones.  
+ Iteración de valor . Calcula el refuerzo para estados y acciones usando una señal de 
+refuerzo determinada por una función de refuerzo. Se usa cuando conocemos una 
+ecuación de ambiente y se necesita encontrar una función acción -valor que es una Q -
+### pagina 14
+función que nos da el refuerzo para cada estado y acción. Se debe tener información 
+completa sobre la ecuación de transición del ambiente.  
+ 
+Ver ejecución del juego Bong, en un Notebook de Jupyter.  
+ 
+6.7 Los datos  
+En el capítulo 1, hablamos de la utilización de los datos como una estrategia para realizar IA, lo 
+que se puede observar directamente en ML. Para resaltar la importancia de los datos, vamos a 
+hablar sobre la irrazonable efectividad de los datos.  
+ 
+En un artículo famoso publicado en 2001, de M. Banko y E. Brill de Microsoft, mostraron que 
+algoritmos muy diferentes a ML, incluyendo los más simples, se comportan casi idénticamente 
+bien, alrededor de la solución de un problema complejo una vez se tengan los datos suficientes: 
+eliminar la ambigüedad en los lenguajes naturales. La idea de que los datos son más 
+importantes que los algoritmos para solucionar problemas complejos fue popularizada por P. 
+Norving, en el artículo “La irrazonable efectividad de los datos”. 
+ 
+Figura 6.12. La irrazonable efectividad de los datos.  
+ 
+Con la digitalización, han aparecido muchas fuentes de datos, de la s cuales se pueden extraer 
+nuevos patrones y conocimiento , que pueden ser útiles para el desarrollo de nuevas 
+aplicaciones, en diferentes dominios. Para crear  modelos efectivos y de calidad de ML, se deben 
+seguir una serie de pasos que garanticen la consistencia del dataset, como es la preparación de 
+los datos.  
+ 
+El procesamiento de datos incluye tanto la preparación de dat os como la ingeniería de 
+características. Antes de preparar los datos, es necesario comprender el resultado que se requiere 
+del modelo de ML que se va a entrenar y, por lo tanto, definir los atributos de los datos que lo van 
+a configurar. Con el resultado que se busca, los datos que se van recopilar se identifican fácilmente 
+y, por lo tanto, se definen sus requisitos de calidad y valor.  Esta articulación con el problema 
+garantiza que se sigan los pasos correctos en la preparación del dataset.
+### pagina 15
+6.7.1 Preparación de los datos 
+Los modelos de ML son específicos de su fuente de datos, por lo que la credibilidad de la fuente y la 
+utilidad de los datos recopilados son esenciales. Es posible que un modelo de ML poderoso, pero 
+entrenarlo con datos erróneos, produzca predicciones erróneas. 
+ 
+La preparación de datos minimiza los errores y permite la monitorización de futuros errores.  Esto 
+garantizará que el modelo de ML se entrene con los datos correctos y, por lo tanto, que la predicción 
+del modelo resultado sea más preciso. Un análisis de exploratorio de los datos proporciona un 
+resumen del dataset y permite realizar los cambios necesarios en el formato.  Además, la 
+preparación de datos ayuda a adaptar los datos a los requisitos del modelo de ML. 
+ 
+6.7.2 Recolección de datos 
+La recolección de datos es la etapa inicial de la preparación de datos e implica la decisión sobre el 
+dataset en función del resultado esperado del modelo de ML que se va a entrenar.  En esencia, la 
+recopilación del conjunto de datos correcto garantiza el resultado correcto. La recopilación de datos 
+consiste en la adquisición, el etiquetado, la ampliación, la integración y la agregación de datos. 
+ 
+6.7.2.1 Adquisición de datos. 
+Implica identificar la fuente de datos, definir la metodología de recopilación y convertir los datos 
+recopilados en formato digital para su cálculo.  La fuente de datos puede ser primaria, es decir, se 
+obtiene directamente de las personas, objetos o procesos estudiados. Cuando la fuente es una parte 
+que ya ha recopilado d atos previamente; se denomina fuente secundaria.  En esta etapa, se utiliza 
+el análisis exploratorio de datos (EDA), técnica que busca comprender las características y atributos 
+de los dataset.  La metodología de recopilación de datos varía según el resultad o esperado.  Las 
+herramientas y técnicas estadísticas se aplican tanto en la recopilación de datos cualitativos como 
+cuantitativos. 
+ 
+6.7.2.2 Etiquetado de datos 
+Es el proceso que busca colocarle el rótulo correcto a cada conjunto de características de un da ta 
+set, para su utilización en aprendizaje supervisado. Cuando faltan esos rótulos, es un proceso 
+necesario, que es bastante costoso pues generalmente incluye trabajo humano. Por ejemplo en 
+agricultura, se debe utilizar para identificación de enfermedades. 
+ 
+6.7.2.3 Aumento de datos 
+Es una estrategia de preparación de datos que se utiliza para aumentar la diversidad de datos en el 
+entrenamiento de modelos de ML. Implica el desarrollo de nuevos datos de entrenamiento a 
+partir de datos ya existentes. Permite la introducción de datos no observados o la introducción de 
+variables inferidas mediante modelos matemáticos.  Es muy provechoso cuando los datos que se 
+entrenan son complejos y el volumen de datos muestreados es pequeño. El aumento de datos 
+soluciona el problema de los datos limitados y el sobreajuste del modelo. 
+ 
+6.7.2.4 Agregación de datos 
+La agregación de datos es una técnica que permite reducir el volumen de datos mediante la 
+agrupación. Esta agrupación suele ser de un solo atributo.  Por ejemplo, si se tiene un conjunto de 
+datos con el atributo tiempo organizado en días a lo largo de una serie temporal determinada, se 
+pueden agregar los datos en grupos mensuales, lo que facilita el manejo del atributo tiempo.  Esto
+### pagina 16
+ayuda a reducir la amplitud de un atribu to determinado sin pérdidas tangibles durante la 
+manipulación futura de los datos. 
+ 
+6.7.3 Limpieza de los datos 
+También conocida como depuración de datos, permite detectar y corregir errores e inexactitudes 
+en los datos recopilados.  Se espera que los datos  sean consistentes con los requisitos de entrada 
+del modelo de ML. Las principales actividades de la limpieza de datos incluyen el ajuste fino de los 
+datos con ruido y la gestión de los datos faltantes. Esto ayuda a garantizar que el dataset recopilado 
+sea completo y que se elimine cualquier error o sesgo.  También incluye la detección de valores 
+atípicos dentro del dataset, tanto numéricos como no numéricos. 
+ 
+6.7.3.1 Análisis Exploratorio de Datos 
+Se basa en la información que se puede obtener de los datos recopilados y, en ocasiones, implica la 
+visualización de datos. Esta visualización permite comprender las propiedades de los datos, como la 
+asimetría y los valores atípicos. Este análisis se realiza principalmente con estadísticas.  Las gráficas 
+permiten comprender la distribución del dataset y el resumen estadístico de todos los atributos. El 
+análisis exploratorio de datos (EDA) permite tomar decisiones, como las técnicas de limpieza de 
+datos que se utilizarán, las transformaciones de datos necesarias, si es necesario reducir los datos. 
+ 
+6.7.3.2 Datos faltantes 
+Si bien es importante verificar durante la recopilación de datos que todos los atributos del dataset 
+tengan un valor real, a veces hay valores faltantes, lo que dificulta su uso. Por ello, se han descrito 
+diferentes técnicas para gestionar los datos faltantes. Las plataformas de manipulación de datos, 
+como Python y R, incorporan algunas librerías que incluyen estas técnicas. La técnica suele variar 
+según el conjunto de datos; por lo tanto, tras la evaluación de los datos en el análisis exploratorio, 
+se puede seleccionar fácilmente la técnica más adecuada para la asignación de datos faltantes.  
+ 
+6.7.3.2.1 Asignación Deductiva  
+Sigue las reglas básicas de la lógica y, por lo tanto, es la asignación más sencilla, aunque también la 
+que requiere más tiempo. Aun así, sus resultados suelen ser muy precisos. Por ejemplo, si los datos 
+de los estudiantes indican que el número total de estudiantes es 10 y el número total de exámenes 
+es 10, pero hay un examen sin nombre y Juan no tiene calificaciones registradas, la lógica dicta que 
+el examen sin nombre es de Juan. 
+  
+6.7.3.2.2 Asignación por Media/Mediana/Moda 
+Utiliza técnicas estadísticas donde se calculan las medidas centrales de tendencia en un atributo 
+determinado y los valores faltantes se reemplazan con la medida de tendencia central calculada, 
+ya sea la media, la moda o la mediana de ese atributo. Se aplica en datasets numéricos y afecta la 
+fuente de datos inicial y el resultado del modelo. Las plataformas de manipulación de datos como 
+Python y R tienen técnicas integradas para tratar datos faltantes. 
+ 
+6.7.3.3 Datos con Ruido.  
+La presencia de datos con ruido puede tener un efecto sustancial en el resultado de un modelo de 
+ML, afecta negativamente la predicción del modelo.  Los datos con ruido incluyen información 
+innecesaria, valores redundantes y valores duplicados o inútiles.  Esto se debe a errores en la 
+recopilación de datos, problemas derivados de la entrada de datos, problemas derivados de las
+### pagina 17
+técnicas de tr ansferencia de datos, convenciones de nomenclatura desiguales y a restricciones 
+tecnológicas, en el caso de los datos no estructurados. . Los datos con ruido se eliminan mediante: 
+el suavizado del dataset, la regresión lineal y el agrupamiento de datos. 
+ 
+6.7.4 Transformación de los datos.   
+La transformación de datos implica cambiar los datos depurados de un formato a otro, de una 
+estructura a otra, o modificar los valores del conjunto de datos depurados para cumplir con los 
+requisitos del modelo de aprendizaje automático. La simplicidad de la transformación de datos 
+depende en gran medida de los datos de entrada necesarios y del conjunto de datos disponible. 
+Incluye, la normalización, la selección de atributos, la discretización. 
+ 
+6.7.5 Reducción de los datos 
+Con el avance de las tendencias en tecnologías de la información y el crecimiento exponencial del 
+IoT, se ha producido un aumento vertiginoso en el volumen de datos disponibles. Si bien, supone 
+una gran ventaja para el ML, ya que la disponibilidad de b ig data para el entrenamiento de los 
+modelos garantiza la precisión de la información generada por estos, la gestión y el análisis de estos 
+enormes volúmenes de datos supone un gran reto, de ahí la necesidad de técnicas de reducción de 
+datos. La reducción de datos reduce los costos de analizar y almacenar volúmenes de datos al 
+aumentar la eficiencia del almacenamiento. Entre las técnicas se incluyen: el uso de cubos de datos 
+y la selección de las características. 
+ 
+6.7.6 Sesgos en la preparación de los datos 
+El sesgo en los datos que entrenan en el modelo de ML hace predicciones erróneas. Es fundamental 
+identificar en la fuente cualquier sesgo en el dat aset durante la preparación y eliminarlo. El sesgo 
+de muestra se produce durante la recopilación de datos, c uando la muestra seleccionada no 
+representa correctamente a la población en estudio. Por ejemplo, un sistema de reconocimiento de 
+iris entrenado exclusivamente con iris de personas africanas no identificará eficazmente los ojos de 
+la población blanca. 
+El sesgo de exclusión es común en la etapa de limpieza de datos, donde se elimina o se tergiversa 
+una parte de los datos, lo que lleva a su exclusión del entrenamiento del modelo. El sesgo de 
+medición se produce durante el etiquetado de datos, donde un etiquetado no uniforme da lugar a 
+predicciones erróneas del modelo de aprendizaje automático. El sesgo de recuperación también se 
+produce en la etapa de etiquetado de datos, cuando el etiquetado no es consistente. 
+Otro es el sesgo racial, y el mejor ejemplo de este sesgo en los motores de búsqueda de voz, donde 
+el modelo se entrenó principalmente con datos de voz de la población blanca y, por lo tanto, apenas 
+reconoce la voz de la población negra [19].  El sesgo de asociación ocurre cuando un conjunto de 
+datos ha creado una asociación implícita entre atributos. El principal sesgo de asociación es el sesgo 
+de género, como en el caso en que un sistema se entrena con todos los directores de escuela 
+hombres, lo que finalmente descalifica la plausibilidad de una directora de escuela. 
+ 
+6.8 Data sets en ML 
+Un data set es una colección de datos utilizada para crear, probar, afinar y en general trabajar 
+modelos de ML. Cada elemento o registro de un data  set, actúa como un ejemplo para
+### pagina 18
+enseñarle al algoritmo de ML cómo debe predecir un resultado cuando en producción se le 
+entra un punto de datos. Los propósitos básicos de un data set son para entrenar un modelo y 
+para medir su precisión cu ando ya está entrenado. A este data  set se le conoce como 
+benchmark. 
+ 
+6.8.1 Partición del Data set en ML 
+En el momento de entrenamiento de los modelos, el dataset generalmente se particiona en 
+tres conjuntos: el conjunto de entrenamiento, el conjunto de prueba y el conjunto de 
+validación. 
+Conjunto de entrenamiento. Es el más importante y se compone de alrededor del 60% 
+del dataset. Comprende los datos que serán utilizados para entrenar el modelo, en 
+otras palabras le indica al algoritmo lo que debe buscar en los datos. 
+Conjunto de validación. Se usa para comprender el comportamiento de un modelo 
+determinado a través de diferentes tipos de modelos. Permite darle validez al modelo 
+en estudio. Cuando la precisión del conjunto de validación es mayor que la precisión 
+obtenida con el conjunto de entrenamiento, estamos hablando de que el modelo esta 
+sobre-entrenado.  
+Conjunto de prueba. Se usa para aproximar la precisión imparcial del modelo y darle 
+una evaluación objetiva. Se busca un conjunto de datos del mundo real que todavía el 
+modelo no conoce.  
+ 
+6.8.2 Data set abiertos 
+Son data sets listos para utilizar, que están disponibles, gratis, para descargar, utilizar, modificar 
+y distribuir, sin restricciones legales o financieras.  Para tipos de datos más específicos,  ver 
+https://research.aimultiple.com/datasets-for-ml/ 
+ 
+Data sets abiertos públicos 
+Son conjuntos de datos de proyectos gubernamentales, disponibles al público. Pueden incluir 
+censos, datos demográficos y otros. En Colombia, la Ley 1712 de 2014 de la Ley de 
+Transparencia y del Derecho de Acceso a la Información Pública Nacional , establece la 
+obligatoriedad de las entidades públicas de aperturar datos y define los datos abiertos en 
+el numeral sexto como " todos aquellos datos primarios o sin procesar, que se encuentran 
+en formatos estándar e interoperables que facilitan su acceso y reutilización, los cuales están 
+bajo la custodia de las entidades públicas o privadas que cumplen con funciones públicas y 
+que son puestos a disposición de cualquier ciudadano, de forma libre y sin restricciones, con 
+el fin de que terceros puedan reutilizarlos y crear servicios derivados de los mismos". 
+ 
+ 
+6.9 Lenguajes y librerías  
+Para el desarrollo de aplicaciones ML, es preciso tener conocimi entos de programación, de 
+estructuras de datos, de manejo de memoria y mínimo de un lenguaje de programación. 
+Además, hay muchas librerías que se ofrecen para diferentes lenguajes de programación para 
+hacer ML, por lo que es muy fácil para personas con los conocimientos básicos señalados.
+### pagina 19
+Por otra parte, en concepto de otros expertos, no hay un mejor lenguaje para ML, cada uno es 
+bueno en determinado campo. Por ejemplo, la mayoría de los ingenieros de ML prefieren usar 
+Python para problemas de lenguaje natural NLP, mientras que para análisis de sentimientos 
+prefieren usar Python o R, y algunos probablemente van a usar Java, para otras aplicaciones de 
+ML como seguridad y detección de amenazas.  
+ 
+Python  
+En estos momentos hay má s de 8 millones de desarrolladores alrededor del mundo que usan 
+Python. Según Spectrum de la IEEE, es el primer lenguaje utilizado, en este último año. Pero hay 
+más: es fácil de aprender, hay una comunidad madura que brinda soporte y en mi concepto lo 
+más importante, hay cientos de librerías que permiten desarrollos rápidos en muchos temas de 
+IA.  
+ 
+ 
+Figura 6.13. Uso de lenguajes de programación. Fuente Stack Overflow  
+ 
+R  
+Con más de dos millones de usuarios, 12000 paquetes en el repositorio CRAN, 
+aproximadamente 206 grupos Meetup, más de 4000 preguntas sobre programación R cada 
+mes, R es un lenguaje para escribir ML de estadísticas para estadísticos.  
+ 
+ 
+6.10. Proyectos de ML  
+ 
+Para el desarrollo de un proyecto de ML, se deben considerar los siguientes pasos:  
+1. Definir el objetivo del proyecto  
+2. Definir las características, o features, o variables del proyecto 
+2. Definir el criterio de evaluación  
+3. Evaluar la solución actual  
+4. Obtener un data set confiable y con los datos suficientes  
+5. Seleccionar el modelo  
+6. Analizar los errores del modelo
+### pagina 20
+7. Aplicar el modelo para el objetivo planteado  
+ 
+ 
+Figura 6.14, modelo para la implementación de sistemas de ML  
+ 
+ 
+6.11. ML oscura  
+Ahora más que nunca, los avances tecnológicos en ML nos traen soluciones revolucionarias a 
+muchos problemas. Con todo lo positivo de estos desarrollos, también es necesario tener en cuenta 
+los matices de estos avances que a veces hacen daño, en lugar de ayudar. 
+ 
+Un modelo de ML con sesgo, comienza a presentar resultados con prejuicios sistémicos como sesgos 
+demográficos, culturales y estéticos. Bajo el paraguas de la IA y el ML, se utilizan dasets de 
+entrenamiento   para “enseñarle” a las máquinas  sus funciones predictivas. Finalmente, la raíz de 
+este problema es un  error humano; los data sets incompletos   llevan a predicciones imprecisas. Sin 
+un amplio rango de representación de los diversos grupos en el mundo que utiliz an internet, los 
+productos digitales están sujetos a reflejar sesgos cognitivos no deseados, que señalan culturas, 
+identidades, …, específicas únicas. 
+ 
+Veamos un caso  en Amazon, con experiencia en IA, donde ha habido problemas. Según un reporte 
+de Reuters, este gigante del e -comerce tenía un sistema interno que usaba IA para examinar las 
+aplicaciones, que hacen las personas interesadas en trabajar con Amazon. Después de algunas 
+quejas se encontró que una herramienta de reclutamiento de personal tenía perju icios contra las 
+mujeres degradándolas consistentemente. Este sistema fue descartado por Amazon, luego de 
+observarse estos comportamientos. 
+ 
+Como se ha visto, los sistemas de ML funcionan con datos históricos, en los que se han mantenido 
+estos prejuicios, generalmente llevando a que se perpetúen los prejuicios existentes. En este caso 
+el prejuicio estaba en los ambientes de trabajo dominados por hombres.  
+ 
+Otra manera en que se implementan prejuicios de género y raza se debe a cómo, de manera 
+inconsciente, los desarrolladores hacen las implementaciones con estos sesgos. Este es un problema 
+muy complicado de resolver y la única solución es a través de una muy buena educación, 
+consideración que las empresas de desarrollo en general no son conscientes.
+### pagina 21
+En su libro, Cathy O´Neal, “Armas Matemáticas de Destrucción”, plantea que estamos viviendo en 
+la edad del algoritmo, que las decisiones que afectan nuestras vidas no las toman los humanos sino 
+los modelos matemáticos. En teoría esto lleva a una mayor equidad, pues en principio, todos somos 
+juzgados por las mismas reglas. Pero en la práctica ocurre todo lo contrario, los modelos son opacos, 
+no están regulados, son incontestables. Esto lleva a un refuerzo en la discriminación.  
+ 
+Supongamos que ustedes se gradúan, generalmente van a trabajar en el desarrollo de un proyecto. 
+En poco tiempo ven la necesidad de salir de la casa y adquirir un apartamento pequeño. Van al 
+banco donde le consignan su salario y manifiestan su interés de compra con el fin de conocer todas 
+las condiciones para que le presten para una hipoteca. Y comienzan los problemas, si bien su ingreso 
+es alto, no tiene contrato a término indefinido, no tiene experiencia crediticia y otros. Las reglas de 
+la banca actual no permiten que se le otorgue un préstamo, estas reglas se llevan a los algoritmos, 
+perpetuando la discriminación.  
+ 
+En el libro “THE BOOK OF  WHY”, j Pearl y D. Mackenzie, p lantean el problema de ML en el sentido 
+que llevan a que características (features) altamente correlacionados se asumen como relaciones 
+causa efecto, llevando a veces a result ados completamente desatinados.  Sin embargo, es 
+importante destacar el problema de que la correlación no implica causa.  
+ 
+Por ejemplo, si se hiciera una gráfica de atracos en Colombia contra el número de ingenieros 
+mecatrónicos, se tendría una correlación espuria y se construyera un modelo entrenado 
+con un dataset de este tipo, simplemente no funcionaría ya que el modelo no entiende las 
+causas detrás de las relaciones entre los datos, por lo que se hace  necesario que 
+entendamos la pregunta del porqué de estas relaciones. Y es aquí donde nace una ciencia 
+poco conocida, aunque también cada vez más en auge, como es la inferencia causal.  
+La inferencia causal consiste en el proceso de identificar y entender las relaciones causa-efecto 
+entre variables. En muchas áreas de investigación, incluyendo la epidemiología, la economía, la 
+ciencia política y la psicología, la inferencia causal es crucial para entender los efectos de las 
+intervenciones, políticas o programas. La inferencia causal también ayuda a predecir el resultado 
+de cambios en las variables, lo que puede ser especialmente útil en el diseño de experimentos y en 
+la toma de decisiones. De manera que en modelos de ML se debe considerar hacer este tipo de 
+análisis para darles una mayor validez 
+6.12. Ejercicios  
+1. Considere la figura 6.1. Conforme un data set con resultados de 50.000  multiplicaciones de 
+matrices 2 X 2, generadas aleatoriamente con números enteros entre -20 y 20. Una vez 
+entrenado el modelo, úselo con 10 ejemplos y compare los resultados con los que se producen 
+al realizar la operación analíticamente. Haga un cálculo de que es más costoso 
+computacionalmente. 
+En alguno de los siguientes problemas, usar datos de alguna entidad gubernamental.  
+2. Estudie el algoritmo SVM con todo detalle, mejore su documentación y con base en el haga 
+cambios para una aplicación.  
+3. Estudie el algoritmo de K- Nearest, con todo detalle mejore su documentación y con base en 
+el haga cambios para una aplicación.
+### pagina 22
+4.  Estudie el algoritmo de árboles de decisión, con todo detalle mejore su documentación y con 
+base en el haga cambios para una aplicación. 
+5. Estudie el algoritmo de Bayes ingenuo y haga un ejemplo bien documentado. 
+De los últimos 4 ejercicios haga 3.  
+Nuevamente, si tiene otro problema que le parezca interesante en el que se use ML, lo puede 
+cambiar, por uno de los ejercicios planteados. 
+ 
+6.13 Bibliografía  
+Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, Concepts, Tools, and 
+Techniques to Build Intelligent Systems, Aurélien Géron.  
+Machine Learning in Robotics, 5 Modern Applications, Daniel Fegguella, https://emerj.com/ai-
+sector-overviews/machine-learning-in-robotics/  
+Cathy O´Neal, Armas Matemáticas de Destrucción, 1972  
+J. Pearl y D. Mackenzie, THE BOOK OF WHY, The New Science of Cause and Effect, Basic Books, 
+2018. 
+Laurence Moroney, AI and Machine Learning for Coders, O’Reilly Media, 2020 
+Data preparation for ML, Rachael Njeri Ndung’u, Murang’a University College, 2020
