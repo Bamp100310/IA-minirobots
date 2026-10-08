@@ -12,6 +12,10 @@ Los programas se entregan como notebooks de Jupyter, ejecutados y con sus result
 | 1. Skills propias a partir de las de [AI Hero](https://www.aihero.dev/) | [Ejercicio 1](notebooks/Ejercicio_1_Definicion_de_Skills.ipynb) | Formato *Agent Skills* (`SKILL.md` + plantillas + scripts en Python), pytest | Validación del formato de las 4 skills; prueba de activación de las descripciones (8/8); detección medida contra una referencia escrita a mano (45/45); flujo completo sobre los 7 documentos de la clase | De los 7 capítulos del curso salen 47 requerimientos, el estado de cada capítulo en el repositorio, 4 tickets, 10 criterios con prueba (14/14 casos, ciclo rojo-verde registrado) y un informe HTML |
 | 2. Chatbot para consultar manuales técnicos | [Ejercicio 2](notebooks/Ejercicio_2_Chatbot.ipynb) | RAG con Ollama + embeddings locales (`nomic-embed-text`, `llama3.2:3b`), Python, `requests`, PyMuPDF | Preparación del entorno con Ollama; carga desde Hugging Face o PDF; división, indexación y recuperación semántica; prueba de respuesta con fuentes | Chatbot que responde preguntas sobre manuales técnicos usando recuperación por similitud y muestra las fuentes consultadas |
 | 3. Chatbot con documentos de clase | [Ejercicio 3](notebooks/Ejercicio_3_Chatbot_con_documentos_de_clase.ipynb) | RAG con Ollama + embeddings locales (`bge-m3`, `llama3.2:3b`), Python, PyMuPDF | Carga de los PDFs de clase, división en fragmentos, indexación semántica, consultas con recuperación por similitud y citación de fuentes | Chatbot que responde preguntas sobre los materiales del curso usando contexto recuperado de los documentos y referencias a páginas concretas |
+| 4. Agente de mantenimiento | [Notebook del agente](notebooks/Ejercicio_4_Agente_de_Mantenimiento.ipynb) | Agente basado en herramientas (funciones Python) y datos simulados en memoria | Búsqueda de repuestos, consulta de existencias, generación de una orden de trabajo y actualización del historial de fallas | Flujo para atender una falla: si hay stock, genera la orden, registra el evento y descuenta el repuesto; también contempla repuesto inexistente o agotado |
+| 5. LLM en un microcontrolador (ESP32) | [Notebook sobre ESP32](notebooks/Ejercicio_5_LLM_en_Microcontrolador.ipynb) | Análisis conceptual de restricciones de hardware y conectividad de un ESP32 | Revisión de memoria, capacidad de cómputo, latencia y dependencia de red, energía y costos de comunicación segura | Explica por qué ejecutar un LLM de propósito general en el ESP32 no es práctico y analiza el acceso a un modelo remoto mediante una API como alternativa, con dependencia de conectividad |
+
+> **Nota:** el contenido y los encabezados de los notebooks de los ejercicios 4 y 5 están intercambiados respecto de sus nombres de archivo. Los enlaces siguen el orden de los archivos indicado en la estructura.
 
 ## Las cuatro skills
 
@@ -34,7 +38,9 @@ Los programas se entregan como notebooks de Jupyter, ejecutados y con sus result
 ├── notebooks/
 │   ├── Ejercicio_1_Definicion_de_Skills.ipynb
 │   ├── Ejercicio_2_Chatbot.ipynb
-│   └── Ejercicio_3_Chatbot_con_documentos_de_clase.ipynb
+│   ├── Ejercicio_3_Chatbot_con_documentos_de_clase.ipynb
+│   ├── Ejercicio_4_Agente_de_Mantenimiento.ipynb
+│   └── Ejercicio_5_LLM_en_Microcontrolador.ipynb
 ├── documentos_clase/         los 7 PDF de la clase, entrada de la demostración
 ├── skills/                   las 4 skills (las escribe el notebook)
 ├── demo/                     salida del flujo completo (sección 10 del notebook)
