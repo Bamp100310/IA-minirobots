@@ -15,7 +15,6 @@ Los programas se entregan como notebooks de Jupyter, ejecutados y con sus result
 | 4. Agente de mantenimiento | [Notebook del agente](notebooks/Ejercicio_4_Agente_de_Mantenimiento.ipynb) | Agente basado en herramientas (funciones Python) y datos simulados en memoria | Búsqueda de repuestos, consulta de existencias, generación de una orden de trabajo y actualización del historial de fallas | Flujo para atender una falla: si hay stock, genera la orden, registra el evento y descuenta el repuesto; también contempla repuesto inexistente o agotado |
 | 5. LLM en un microcontrolador (ESP32) | [Notebook sobre ESP32](notebooks/Ejercicio_5_LLM_en_Microcontrolador.ipynb) | Análisis conceptual de restricciones de hardware y conectividad de un ESP32 | Revisión de memoria, capacidad de cómputo, latencia y dependencia de red, energía y costos de comunicación segura | Explica por qué ejecutar un LLM de propósito general en el ESP32 no es práctico y analiza el acceso a un modelo remoto mediante una API como alternativa, con dependencia de conectividad |
 
-> **Nota:** el contenido y los encabezados de los notebooks de los ejercicios 4 y 5 están intercambiados respecto de sus nombres de archivo. Los enlaces siguen el orden de los archivos indicado en la estructura.
 
 ## Las cuatro skills
 
